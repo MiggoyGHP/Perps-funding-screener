@@ -7,6 +7,26 @@
 
 import { normalizeBundle } from './normalize.js';
 
+/** How many of the three venues came back empty in a bundle. */
+export function venueFailures(bundle) {
+  return ['hyperliquid', 'binance', 'bybit'].filter((v) => !bundle || !bundle[v]).length;
+}
+
+/**
+ * Snapshot quality gate. GitHub-hosted runners are US-region, where Binance
+ * (451) and Bybit (403, bytick included) geo-block — CI captures carry those
+ * venues only via the Hyperliquid echo. A fresher-but-more-degraded capture
+ * must not overwrite a complete snapshot that is still within the staleness
+ * window; once the existing one ages past it, fresh-but-degraded wins
+ * (stale is worse than flagged).
+ */
+export function keepExistingSnapshot(existing, next, staleAfterHours, nowMs) {
+  if (!existing) return false;
+  const age = nowMs - Date.parse(existing.generatedAt);
+  if (!Number.isFinite(age) || age > staleAfterHours * 3600000) return false;
+  return venueFailures(next) > venueFailures(existing);
+}
+
 /**
  * Append one capture to the history: { t, rows: [{ a, v, rate, ih }] } per
  * point, ok-state rows only. Idempotent per generatedAt; caps retention to

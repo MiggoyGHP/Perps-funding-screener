@@ -77,8 +77,11 @@ node --test tests/compute.test.mjs
      ```
 
    - automatically: the included [`.github/workflows/refresh-snapshot.yml`](.github/workflows/refresh-snapshot.yml)
-     re-snapshots hourly and commits when changed (GitHub runners are not
-     exchange-geo-blocked, so this also sidesteps local ISP blocks). Delete that file if you
+     re-snapshots hourly and commits when changed. Caveat (verified 2026-07-05): GitHub's
+     US-region runners are geo-blocked by Binance (451) and Bybit (403), so CI captures carry
+     those venues via Hyperliquid's `predictedFundings` echo, flagged in the UI; the script
+     never overwrites a complete snapshot younger than 24h with a more-degraded capture, so a
+     locally generated snapshot stays the gold copy for a day. Delete that file if you
      don't want the automation. Note: GitHub suspends scheduled workflows after 60 days
      without repository activity — any push (including the bot's own snapshot commits)
      resets the clock, so this only matters if the data stops changing entirely.

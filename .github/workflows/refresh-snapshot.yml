@@ -5,8 +5,14 @@
 #   git commit -am "snapshot"
 #   git push
 #
-# GitHub-hosted runners are not exchange-geo-blocked, so this also sidesteps
-# ISP-level blocks that may affect local runs (e.g. api.bybit.com).
+# Geo reality (verified 2026-07-05): GitHub-hosted runners are US-region.
+# From there Hyperliquid is reachable, but Binance fapi returns 451 and Bybit
+# returns 403 (api.bytick.com included). CI captures therefore carry
+# Binance/Bybit rates via Hyperliquid's predictedFundings echo, flagged as
+# such in the UI. fetch-snapshot.mjs refuses to overwrite a complete,
+# still-fresh (<24h) snapshot with a more-degraded capture; data/history.json
+# accrues on every run either way. A locally generated snapshot (from a
+# network that reaches all venues) stays the gold copy for up to 24h.
 name: Refresh funding snapshot
 
 on:

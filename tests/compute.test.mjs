@@ -14,7 +14,7 @@ import { SAMPLE_BUNDLE } from '../js/sampleData.js';
 import { sanitizeInputs, loadInputs } from '../js/persist.js';
 import { DEFAULT_INPUTS, UNIVERSE } from '../js/config.js';
 import { toCsv, CSV_HEADER } from '../js/csv.js';
-import { appendHistory } from '../js/history.js';
+import { appendHistory, keepExistingSnapshot, venueFailures } from '../js/history.js';
 
 const close = (actual, expected, eps = 1e-12) =>
   assert.ok(Math.abs(actual - expected) < eps, `expected ${actual} ≈ ${expected}`);
@@ -480,4 +480,20 @@ test('appendHistory: corrupt existing file or bundle degrades, never throws', ()
   assert.equal(appendHistory('garbage', bundle).points.length, 1);
   assert.equal(appendHistory({ points: 'nope' }, bundle).points.length, 1);
   assert.deepEqual(appendHistory({ points: [] }, { generatedAt: 'not a date' }).points, []);
+});
+
+test('snapshot quality gate: degraded CI captures never clobber a fresh complete snapshot', () => {
+  const now = Date.parse(AS_OF);
+  const complete = { generatedAt: AS_OF, hyperliquid: {}, binance: {}, bybit: {} };
+  const degraded = { generatedAt: AS_OF, hyperliquid: {}, binance: null, bybit: null };
+  assert.equal(venueFailures(complete), 0);
+  assert.equal(venueFailures(degraded), 2);
+  // Fresh complete snapshot beats a new degraded capture…
+  assert.equal(keepExistingSnapshot(complete, degraded, 24, now + 3600000), true);
+  // …but stale (>24h) loses to fresh-however-degraded, and equal/better quality always writes.
+  assert.equal(keepExistingSnapshot(complete, degraded, 24, now + 25 * 3600000), false);
+  assert.equal(keepExistingSnapshot(degraded, complete, 24, now + 3600000), false);
+  assert.equal(keepExistingSnapshot(degraded, degraded, 24, now + 3600000), false);
+  assert.equal(keepExistingSnapshot(null, degraded, 24, now), false);
+  assert.equal(keepExistingSnapshot({ generatedAt: 'garbage' }, degraded, 24, now), false);
 });

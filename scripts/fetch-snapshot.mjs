@@ -14,10 +14,19 @@
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fetchBundle } from '../js/fetchBundle.js';
-import { appendHistory } from '../js/history.js';
+import { appendHistory, keepExistingSnapshot } from '../js/history.js';
+import { STALE_AFTER_HOURS } from '../js/config.js';
 
 const OUT = new URL('../data/snapshot.json', import.meta.url);
 const HIST = new URL('../data/history.json', import.meta.url);
+
+async function readJsonOrNull(url) {
+  try {
+    return JSON.parse(await readFile(url, 'utf8'));
+  } catch {
+    return null;
+  }
+}
 
 console.log('Fetching funding data (Hyperliquid, Binance USDS-M, Bybit linear)…');
 const bundle = await fetchBundle();
@@ -38,18 +47,24 @@ if (failed.length === 3) {
 }
 
 await mkdir(new URL('../data/', import.meta.url), { recursive: true });
-await writeFile(OUT, JSON.stringify(bundle, null, 2) + '\n');
-console.log(`Snapshot written: data/snapshot.json (generatedAt ${bundle.generatedAt})`);
 
-// Append this capture to the rolling funding history (28-day cap). No UI
-// reads it yet — the future trend column needs the data to exist first.
-let existingHistory = null;
-try {
-  existingHistory = JSON.parse(await readFile(HIST, 'utf8'));
-} catch {
-  /* first run or corrupt file — appendHistory starts fresh */
+// Quality gate: from US-region CI, Binance/Bybit geo-block and this capture
+// carries them only via the Hyperliquid echo — never overwrite a complete,
+// still-fresh snapshot with a more-degraded one. Stale (>24h) loses to fresh.
+const existingSnapshot = await readJsonOrNull(OUT);
+if (keepExistingSnapshot(existingSnapshot, bundle, STALE_AFTER_HOURS, Date.now())) {
+  console.log(
+    `Snapshot kept: existing capture (${existingSnapshot.generatedAt}) reaches more venues ` +
+    'than this run and is still fresh — not overwriting.',
+  );
+} else {
+  await writeFile(OUT, JSON.stringify(bundle, null, 2) + '\n');
+  console.log(`Snapshot written: data/snapshot.json (generatedAt ${bundle.generatedAt})`);
 }
-const history = appendHistory(existingHistory, bundle);
+
+// History accrues on EVERY run (28-day cap), snapshot kept or not — the
+// future trend column wants the densest series available. No UI reads it yet.
+const history = appendHistory(await readJsonOrNull(HIST), bundle);
 await writeFile(HIST, JSON.stringify(history) + '\n');
 console.log(`History appended: data/history.json (${history.points.length} points, 28-day cap)`);
 
