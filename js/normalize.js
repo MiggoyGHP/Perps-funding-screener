@@ -40,9 +40,7 @@ function posOr(h, fallback) {
 function row(asset, venue, patch) {
   return {
     asset: asset.id,
-    assetLabel: asset.label,
     spotAvailable: asset.spot.available,
-    spotNote: asset.spot.note,
     venue,
     state: 'ok',
     ratePerInterval: null,

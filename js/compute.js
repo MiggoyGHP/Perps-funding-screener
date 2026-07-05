@@ -39,7 +39,7 @@ export function annualizedCosts({ feeEvents, holdingDays, financingApr = 0 }) {
   return roundTrip * (365 / holdingDays) + financingApr;
 }
 
-export function hurdleRate({ riskFree, riskPremium }) {
+function hurdleRate({ riskFree, riskPremium }) {
   return riskFree + riskPremium;
 }
 
@@ -122,4 +122,99 @@ export function assessSpread(asset, okRows, inputs) {
     margin,
     clears: margin >= 0,
   };
+}
+
+// --- display ranking ---------------------------------------------------------
+
+/** NaN-free descending comparator (handles the -Infinity sentinels). */
+const desc = (a, b) => (a === b ? 0 : a < b ? 1 : -1);
+
+const STATE_ORDER = { ok: 0, unavailable: 1, delisted: 2, notListed: 3 };
+
+/**
+ * Assess every trade the page knows for one asset: a carry verdict per ok
+ * venue row plus the asset's cross-venue spread. bestMargin — the ranking
+ * key — is the best NET margin vs hurdle across BOTH trade types: in a
+ * negative-funding regime every carry row is 'reverse' (no verdict) while
+ * the cross-venue spread can still be the best trade on the page.
+ */
+export function assessAsset(asset, rows, inputs) {
+  const assetRows = rows.filter((r) => r.asset === asset.id);
+  const okRows = assetRows.filter((r) => r.state === 'ok');
+  const carry = new Map(
+    okRows.map((r) => [r.venue, assessCarry(r, { ...inputs, perpFee: inputs.perpFeeByVenue[r.venue] })]),
+  );
+  const spread = assessSpread(asset.id, okRows, inputs);
+
+  const margins = [...carry.values()].map((v) => v.margin).filter((m) => Number.isFinite(m));
+  if (spread && Number.isFinite(spread.margin)) margins.push(spread.margin);
+  const grosses = okRows.map((r) => r.aprGross).filter((g) => Number.isFinite(g));
+
+  return {
+    asset,
+    rows: assetRows,
+    carry,
+    spread,
+    bestMargin: margins.length ? Math.max(...margins) : -Infinity,
+    bestGross: grosses.length ? Math.max(...grosses) : -Infinity,
+  };
+}
+
+/**
+ * Order assets by the decision metric — best net margin vs hurdle — never by
+ * gross APR: a fat gross number that cannot clear costs must not outrank a
+ * thinner one that can. Ties fall back to gross, then to universe order
+ * (Array.prototype.sort is stable).
+ */
+export function rankAssets(universe, rows, inputs) {
+  return universe
+    .map((asset) => assessAsset(asset, rows, inputs))
+    .sort((x, y) => desc(x.bestMargin, y.bestMargin) || desc(x.bestGross, y.bestGross));
+}
+
+/**
+ * Order one asset's venue rows for display: data-honesty states first, then
+ * numeric net margin, then verdictless ok-rows (reverse / no-spot), with
+ * gross APR as the final tiebreak.
+ */
+export function rankRows(assetRows, carryByVenue) {
+  return [...assetRows].sort((a, b) => {
+    const s = STATE_ORDER[a.state] - STATE_ORDER[b.state];
+    if (s) return s;
+    const ma = carryByVenue.get(a.venue)?.margin;
+    const mb = carryByVenue.get(b.venue)?.margin;
+    const fa = Number.isFinite(ma);
+    const fb = Number.isFinite(mb);
+    if (fa !== fb) return fa ? -1 : 1;
+    if (fa && fb && ma !== mb) return desc(ma, mb);
+    return desc(a.aprGross ?? -Infinity, b.aprGross ?? -Infinity);
+  });
+}
+
+/**
+ * The morning-scan answer: the single highest-margin trade across both
+ * tables. Returns null when nothing on the page yields a numeric verdict.
+ */
+export function bestOpportunity(ranked) {
+  let best = null;
+  for (const g of ranked) {
+    for (const v of g.carry.values()) {
+      if (Number.isFinite(v.margin) && (!best || v.margin > best.margin)) {
+        best = { kind: 'carry', asset: g.asset, venue: v.venue, netApr: v.netApr, margin: v.margin, clears: v.clears };
+      }
+    }
+    const s = g.spread;
+    if (s && Number.isFinite(s.margin) && (!best || s.margin > best.margin)) {
+      best = {
+        kind: 'spread',
+        asset: g.asset,
+        shortVenue: s.shortVenue,
+        longVenue: s.longVenue,
+        netApr: s.netApr,
+        margin: s.margin,
+        clears: s.clears,
+      };
+    }
+  }
+  return best;
 }

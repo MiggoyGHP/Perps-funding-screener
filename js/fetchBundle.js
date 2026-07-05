@@ -83,49 +83,60 @@ async function fetchHyperliquid() {
 }
 
 async function fetchBinance() {
-  // premiumIndex per symbol (weight 1 each) + fundingInfo for authoritative
-  // per-symbol intervals (HYPEUSDT is 4h; absent symbol ⇒ 8h default).
-  // Partial failures degrade per part: one symbol's failure must not kill the
-  // others, and a fundingInfo failure must not discard good premiumIndex data
-  // (normalize falls back to the flagged echo interval / 8h default).
-  const settled = await Promise.allSettled(
-    binanceSymbols.map((s) => getJson(`${BINANCE_API}/fapi/v1/premiumIndex?symbol=${s}`)),
-  );
-  const premiumIndex = settled.filter((r) => r.status === 'fulfilled').map((r) => r.value);
-  const symbolErrors = settled
-    .map((r, i) => (r.status === 'rejected' ? `${binanceSymbols[i]}: ${r.reason?.message || r.reason}` : null))
-    .filter(Boolean);
+  // Bulk premiumIndex (no symbol param → every listed symbol in one call,
+  // filtered to the universe): at 12 assets the per-symbol pattern would be
+  // ~12 requests; bulk is 1. fundingInfo stays authoritative for per-symbol
+  // intervals (HYPEUSDT is 4h; absent symbol ⇒ 8h default). A fundingInfo
+  // failure must not discard good premiumIndex data (normalize falls back to
+  // the flagged echo interval / 8h default).
+  const notes = [];
+  const all = await getJson(`${BINANCE_API}/fapi/v1/premiumIndex`);
+  const premiumIndex = all.filter((e) => binanceSymbols.includes(e?.symbol));
   if (premiumIndex.length === 0) {
-    throw new Error(symbolErrors.join('; ') || 'premiumIndex unavailable');
+    throw new Error('premiumIndex: no universe symbols present in the exchange response');
   }
+  const missing = binanceSymbols.filter((s) => !premiumIndex.some((e) => e.symbol === s));
+  if (missing.length) notes.push(`missing from premiumIndex: ${missing.join(', ')}`);
 
   let fundingInfo = null;
   try {
     const allInfo = await getJson(`${BINANCE_API}/fapi/v1/fundingInfo`);
     fundingInfo = allInfo.filter((e) => binanceSymbols.includes(e?.symbol));
   } catch (e) {
-    symbolErrors.push(`fundingInfo failed: ${e.message}`);
+    notes.push(`fundingInfo failed: ${e.message}`);
   }
-  return { premiumIndex, fundingInfo, partialErrors: symbolErrors.length ? { binanceNote: symbolErrors.join('; ') } : {} };
+  return { premiumIndex, fundingInfo, partialErrors: notes.length ? { binanceNote: notes.join('; ') } : {} };
 }
 
 async function fetchBybit() {
   let lastErr;
+  const wanted = new Set(bybitSymbols);
   for (const host of BYBIT_HOSTS) {
     try {
-      const tickerLists = await Promise.all(
-        bybitSymbols.map((s) => getJson(`${host}/v5/market/tickers?category=linear&symbol=${s}`)),
-      );
-      const instLists = await Promise.all(
-        bybitSymbols.map((s) => getJson(`${host}/v5/market/instruments-info?category=linear&symbol=${s}`)),
-      );
-      for (const r of [...tickerLists, ...instLists]) {
-        if (r.retCode !== 0) throw new Error(`Bybit retCode ${r.retCode}: ${r.retMsg}`);
+      // Bulk endpoints filtered to the universe (2 requests instead of 2 per
+      // symbol). Dated futures carry distinct symbols (e.g. BTCUSDT-26SEP26)
+      // so the filter alone excludes them; normalize additionally insists on
+      // contractType LinearPerpetual.
+      const tickersRes = await getJson(`${host}/v5/market/tickers?category=linear`);
+      if (tickersRes.retCode !== 0) throw new Error(`Bybit retCode ${tickersRes.retCode}: ${tickersRes.retMsg}`);
+
+      // instruments-info paginates (limit ≤ 1000; ~700 linear instruments
+      // today) — follow the cursor defensively in case the list outgrows a page.
+      const instruments = [];
+      let cursor = '';
+      for (let page = 0; page < 5; page++) {
+        const url = `${host}/v5/market/instruments-info?category=linear&limit=1000${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ''}`;
+        const res = await getJson(url);
+        if (res.retCode !== 0) throw new Error(`Bybit retCode ${res.retCode}: ${res.retMsg}`);
+        instruments.push(...res.result.list);
+        cursor = res.result.nextPageCursor;
+        if (!cursor) break;
       }
+
       return {
         host,
-        tickers: { category: 'linear', list: tickerLists.flatMap((r) => r.result.list) },
-        instrumentsInfo: { category: 'linear', list: instLists.flatMap((r) => r.result.list) },
+        tickers: { category: 'linear', list: tickersRes.result.list.filter((e) => wanted.has(e?.symbol)) },
+        instrumentsInfo: { category: 'linear', list: instruments.filter((e) => wanted.has(e?.symbol)) },
       };
     } catch (e) {
       lastErr = e;

@@ -16,22 +16,34 @@
 </head>
 <body>
   <header class="masthead">
-    <div>
-      <p class="eyebrow">Delta-neutral carry desk · read-only monitor</p>
+    <div class="mast-line">
       <h1 class="mast-title">PERP FUNDING SCREENER</h1>
-      <p class="mast-sub">
-        Funding rates on Hyperliquid, Binance USDⓈ-M and Bybit linear — annualized by each market's
-        <em>own</em> payment convention — netted against costs and compared to your hurdle.
-      </p>
+      <span class="mast-tag">delta-neutral carry · read-only</span>
+      <div class="provenance">
+        <span id="badge"><!-- data-provenance badge rendered by ui.js --></span>
+        <button type="button" class="live-btn" id="live-btn"
+                title="Re-fetch funding from all three venue APIs directly in this browser — no server anywhere.">
+          fetch live now
+        </button>
+      </div>
     </div>
-    <div class="provenance" id="badge" role="status" aria-live="polite">
-      <!-- data-provenance badge rendered by ui.js -->
-    </div>
+    <p class="mast-sub">
+      Hyperliquid, Binance USDⓈ-M and Bybit linear — funding annualized by each venue's
+      <em>own</em> convention, netted against costs, checked against your hurdle.
+    </p>
+    <!-- State-transition announcements only (load warnings, staleness, overdue
+         settles) — deliberately separate from the ticking clock in #badge so
+         screen readers are not spammed every 30s. -->
+    <div class="badge-alerts" id="badge-alerts" role="status"></div>
   </header>
 
   <!-- The point of the piece: each venue's annualization convention, stated
-       in the open, with the multiplier used in the table below. -->
-  <section class="plaques" id="plaques" aria-label="Per-venue funding conventions"></section>
+       in the open. Collapsed to a one-line strip so the fold belongs to the
+       tables; the full plaques are one click away. -->
+  <details class="conventions" id="conventions">
+    <summary id="conv-strip"><!-- one-line convention strip rendered by ui.js --></summary>
+    <section class="plaques" id="plaques" aria-label="Per-venue funding conventions"></section>
+  </details>
 
   <section class="controls" aria-label="Cost and hurdle assumptions">
     <div class="controls-grid" id="controls"></div>
@@ -42,13 +54,24 @@
     </p>
   </section>
 
+  <p class="best-line" id="best-line"><!-- best-net callout rendered by ui.js --></p>
+
   <main>
     <section aria-labelledby="carry-h">
       <div class="section-head">
         <h2 id="carry-h">Carry — long spot / short perp</h2>
+        <p class="data-links">
+          <label class="clears-filter" title="Hide every row that fails the hurdle.">
+            <input type="checkbox" id="clears-only" /> only clears
+          </label>
+          · <button type="button" class="linklike" id="csv-btn"
+                  title="Both tables as CSV — raw decimals, ready for a spreadsheet or pandas.">export CSV</button>
+          · <a href="./data/snapshot.json" target="_blank" rel="noopener"
+               title="The exact bundle this page renders — a stable URL your own tooling can poll.">raw JSON</a>
+        </p>
         <p class="section-note">
-          Positive funding pays the short perp, so the classic cash-and-carry collects it.
-          Rates shown are <strong>predicted for the next settlement</strong> of each market.
+          Rates are each venue's <strong>prediction for the next settlement</strong> · positive
+          funding pays the short perp — the classic cash-and-carry collects it.
         </p>
       </div>
       <div class="table-wrap">
@@ -58,7 +81,7 @@
               <th scope="col">Asset</th>
               <th scope="col">Venue</th>
               <th scope="col" class="num" data-tip="The venue's native quote: a decimal rate per that market's own funding interval. The interval chip is per-symbol data, read from the venue.">Funding / interval</th>
-              <th scope="col" class="num" data-tip="Simple annualization: rate × (8,760 ÷ interval hours). No compounding. See the convention plaques above for each venue's basis.">Gross APR</th>
+              <th scope="col" class="num col-gross" data-tip="Simple annualization: rate × (8,760 ÷ interval hours). No compounding. Expand the conventions strip above for each venue's basis.">Gross APR</th>
               <th scope="col" class="num" data-tip="Gross APR − round-trip fees on both legs amortized over the holding period − spot financing.">Net carry</th>
               <th scope="col" class="num" data-tip="Hurdle = risk-free + risk premium. Verdict is net carry minus hurdle.">vs hurdle</th>
             </tr>
@@ -72,10 +95,9 @@
       <div class="section-head">
         <h2 id="spread-h">Cross-venue funding spreads</h2>
         <p class="section-note">
-          Short the perp where funding is richest, long it where it's cheapest — no spot leg.
-          Costs are four perp fills at each venue's own fee. Legs settle on different clocks and
-          different notional bases (Hyperliquid: oracle price; Binance/Bybit: mark price) — that
-          timing/basis risk is not modeled.
+          Short the perp where funding is richest, long where it's cheapest — no spot leg; costs are
+          four perp fills. Legs settle on different clocks and notional bases (Hyperliquid: oracle;
+          Binance/Bybit: mark) — that timing/basis risk is not modeled.
         </p>
       </div>
       <div class="table-wrap">
@@ -84,9 +106,9 @@
             <tr>
               <th scope="col">Asset</th>
               <th scope="col">Trade</th>
-              <th scope="col" class="num" data-tip="Difference of the two legs' gross APRs, each annualized by its own interval before comparison.">Spread APR</th>
+              <th scope="col" class="num col-spread" data-tip="Difference of the two legs' gross APRs, each annualized by its own interval before comparison.">Spread APR</th>
               <th scope="col" class="num" data-tip="Spread APR − four perp fills (open+close on each venue) amortized over the holding period.">Net</th>
-              <th scope="col" class="num" data-tip="Same hurdle as the carry table: risk-free + risk premium.">vs hurdle</th>
+              <th scope="col" class="num" data-tip="Same hurdle as the carry table: risk-free + risk premium. Conservative for a perp-perp spread, which posts margin rather than full notional.">vs hurdle</th>
             </tr>
           </thead>
           <tbody id="spread-body"></tbody>
