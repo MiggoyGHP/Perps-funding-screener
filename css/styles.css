@@ -411,6 +411,9 @@ td.venue-cell { color: var(--dim); white-space: nowrap; }
   white-space: nowrap;
 }
 .chip.nonstandard { color: var(--phosphor); border-color: color-mix(in srgb, var(--phosphor) 45%, transparent); }
+/* Pinned at HL's interest-rate floor — a normal resting state, not a warning:
+   stays muted, dashed border reads as "parked". */
+.chip.floor { border-style: dashed; }
 
 .settles { display: block; font-size: 11px; color: var(--dim); margin-top: 1px; }
 [data-next].overdue { color: var(--phosphor); }

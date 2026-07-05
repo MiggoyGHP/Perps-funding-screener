@@ -86,6 +86,24 @@ test('Hyperliquid rows are hourly (intervalHours 1) with ×8760 APR', () => {
   close(eth.aprGross, 0.1095);
 });
 
+test('HL rows pinned at the interest floor carry atFloor; deviating rates do not', () => {
+  // Sample ETH sits at 0.0000125/1h — HL's fixed interest component, the exact
+  // value every core perp shows when premium is inside the clamp band.
+  assert.equal(get('ETH', 'hyperliquid').atFloor, true);
+  const b = cloneBundle();
+  b.hyperliquid.predictedFundings
+    .find(([c]) => c === 'ETH')[1]
+    .find(([k]) => k === 'HlPerp')[1].fundingRate = '0.0000126';
+  const off = normalizeBundle(b).find((r) => r.asset === 'ETH' && r.venue === 'hyperliquid');
+  assert.equal(off.atFloor, false);
+});
+
+test('atFloor never applies outside core HL rows (HIP-3 and other venues)', () => {
+  assert.ok(!get('OIL', 'hyperliquid').atFloor); // deployer-set economics
+  assert.ok(!get('ETH', 'binance').atFloor);
+  assert.ok(!get('ETH', 'bybit').atFloor);
+});
+
 test('HYPE on Binance uses the 4h interval from fundingInfo, not the 8h default', () => {
   const r = get('HYPE', 'binance');
   assert.equal(r.state, 'ok');

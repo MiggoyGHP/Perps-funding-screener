@@ -122,6 +122,7 @@
     <ul id="footnotes">
       <li><strong>Annualization is simple, not compounded</strong> — APR = per-interval rate × intervals per year, the desk convention for quoting funding.</li>
       <li><strong>Intervals are per-symbol data.</strong> Binance's HYPEUSDT settles every 4h while BTCUSDT settles every 8h; both venues' majority interval is now 4h. This page reads the interval per market from the venue itself and shows it next to every rate.</li>
+      <li><strong>Identical Hyperliquid rates are real.</strong> HL funding is premium + clamp(interest − premium, ±0.05%) with interest fixed at 0.01%/8h — when premium sits inside the band, the usual state for majors in a calm market, funding pins at exactly 0.00125%/1h. Rows showing it carry a <span class="chip floor" style="margin-left:0">floor</span> chip; per-asset differentiation appears precisely when carry appears.</li>
       <li><strong>Predicted ≠ settled.</strong> Displayed rates are each venue's estimate for the upcoming settlement (consistent basis across venues); realized funding will differ.</li>
       <li><strong>OIL (xyz:CL)</strong> is a HIP-3 builder-deployed synthetic on Hyperliquid (trade.xyz): deployer-set oracle, 0.5 funding multiplier already inside the quoted rate, and no investable spot leg — so no carry verdict is offered.</li>
       <li><strong>Read-only demonstration.</strong> No execution, no accounts, no keys. Nothing here is investment advice.</li>

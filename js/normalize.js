@@ -25,6 +25,7 @@
 
 import { UNIVERSE, VENUE_IDS } from './config.js';
 import { annualize } from './compute.js';
+import { HL_INTEREST_FLOOR_HOURLY } from './venues.js';
 
 function num(v) {
   const n = typeof v === 'string' ? parseFloat(v) : v;
@@ -120,6 +121,9 @@ function normalizeHyperliquid(bundle, asset) {
     intervalHours,
     nextFundingTime: num(hl.nextFundingTime),
     aprGross: annualize(rate, intervalHours),
+    // Core perps only: HIP-3 markets have deployer-set economics, so the fixed
+    // interest floor doesn't apply to them.
+    atFloor: rate === HL_INTEREST_FLOOR_HOURLY,
   });
 }
 

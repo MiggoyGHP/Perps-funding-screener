@@ -16,9 +16,61 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fetchBundle } from '../js/fetchBundle.js';
 import { appendHistory, keepExistingSnapshot } from '../js/history.js';
 import { STALE_AFTER_HOURS } from '../js/config.js';
+import { HL_INTEREST_FLOOR_HOURLY } from '../js/venues.js';
 
 const OUT = new URL('../data/snapshot.json', import.meta.url);
 const HIST = new URL('../data/history.json', import.meta.url);
+
+// Cross-verify the Hyperliquid leg against a SECOND, independent endpoint:
+// metaAndAssetCtxs' assetCtx.funding vs predictedFundings' HlPerp rate.
+// Majors routinely pin at the 0.0000125/1h interest floor, which makes every
+// HL row identical and looks like a placeholder to a sharp eye — recording the
+// cross-check inside the snapshot makes the raw JSON self-documenting proof
+// that the pinned values were independently confirmed at capture time.
+//
+// Semantics matter here: for a coin AT the floor both endpoints return the
+// exact constant, so any disagreement about a pinned row is a real integrity
+// problem (`floorSuspects`). For a coin OFF the floor the two endpoints
+// estimate the upcoming settlement over different windows and update on
+// different cadences, so intra-hour divergence is normal — recorded verbatim
+// in `divergences` (live-observed 2026-07-05: SOL 21% apart one minute after
+// leaving the floor), never alarmed on. Nothing here is fatal.
+async function crossCheckHyperliquid(bundle) {
+  const pf = bundle.hyperliquid?.predictedFundings;
+  if (!Array.isArray(pf)) return null;
+  try {
+    const res = await fetch('https://api.hyperliquid.xyz/info', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'metaAndAssetCtxs' }),
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    const [meta, ctxs] = await res.json();
+    const ctxByCoin = new Map(meta.universe.map((u, i) => [u?.name, ctxs[i]]));
+    let checked = 0;
+    let confirmed = 0;
+    const divergences = [];
+    const floorSuspects = [];
+    for (const [coin, venues] of pf) {
+      const hl = venues.find(([k]) => k === 'HlPerp')?.[1];
+      const ctx = ctxByCoin.get(coin);
+      if (!hl || !ctx) continue;
+      checked += 1;
+      const a = parseFloat(hl.fundingRate);
+      const b = parseFloat(ctx.funding);
+      if (a === b) {
+        confirmed += 1;
+        continue;
+      }
+      divergences.push({ coin, predictedFundings: hl.fundingRate, metaAndAssetCtxs: ctx.funding });
+      if (a === HL_INTEREST_FLOOR_HOURLY) floorSuspects.push(coin);
+    }
+    return { endpoint: 'metaAndAssetCtxs', checked, confirmed, divergences, floorSuspects };
+  } catch (e) {
+    return { endpoint: 'metaAndAssetCtxs', error: String(e?.message || e) };
+  }
+}
 
 async function readJsonOrNull(url) {
   try {
@@ -31,6 +83,25 @@ async function readJsonOrNull(url) {
 console.log('Fetching funding data (Hyperliquid, Binance USDS-M, Bybit linear)…');
 const bundle = await fetchBundle();
 bundle.source = 'snapshot';
+
+const hlCrossCheck = await crossCheckHyperliquid(bundle);
+if (hlCrossCheck) {
+  bundle.hlCrossCheck = hlCrossCheck;
+  if (hlCrossCheck.error) {
+    console.warn(`  HL cross-check skipped: ${hlCrossCheck.error}`);
+  } else {
+    const { checked, confirmed, divergences, floorSuspects } = hlCrossCheck;
+    console.log(
+      `  HL cross-check vs metaAndAssetCtxs: ${confirmed}/${checked} exact` +
+      (divergences.length
+        ? `; off-floor divergence (normal intra-hour): ${divergences.map((x) => x.coin).join(', ')}`
+        : ''),
+    );
+    if (floorSuspects.length) {
+      console.warn(`  FLOOR SUSPECT (pinned in predictedFundings, disputed by metaAndAssetCtxs): ${floorSuspects.join(', ')}`);
+    }
+  }
+}
 
 const status = (v, name) =>
   bundle[v] ? `  ${name.padEnd(12)} OK` : `  ${name.padEnd(12)} FAILED: ${bundle.errors[v]}`;

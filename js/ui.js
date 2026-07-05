@@ -287,6 +287,18 @@ function intervalChip(row) {
   return `<span class="${cls}" title="${esc(tip)}">/${row.intervalHours}h</span>`;
 }
 
+const FLOOR_TIP =
+  "Pinned at Hyperliquid's interest-rate floor: premium ≈ 0, so funding = the fixed interest " +
+  'component — exactly 0.01% per 8h, paid as 0.00125%/1h. The normal state for liquid majors ' +
+  'in a calm tape; most HL assets sit here until a premium opens up. Real API data, ' +
+  'cross-verified against a second endpoint (metaAndAssetCtxs) at capture time.';
+
+function floorChip(row) {
+  // Identical HL rates across majors look like a placeholder to a sharp eye —
+  // label the mechanic instead of leaving the question open.
+  return row.atFloor ? `<span class="chip floor" title="${esc(FLOOR_TIP)}">floor</span>` : '';
+}
+
 function flagsLine(row) {
   // Provenance flags are material disclosures (secondhand rates, defaulted
   // intervals) — rendered as visible text, not a hover-only title, so touch,
@@ -312,7 +324,7 @@ function fundingCell(row) {
   }
   const cls = row.ratePerInterval >= 0 ? 'rate-pos' : 'rate-neg';
   return `
-    <span class="${cls}">${fmtRate(row.ratePerInterval)}</span>${intervalChip(row)}
+    <span class="${cls}">${fmtRate(row.ratePerInterval)}</span>${intervalChip(row)}${floorChip(row)}
     <span class="settles">${settleText(row)}</span>${flagsLine(row)}`;
 }
 

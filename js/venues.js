@@ -10,6 +10,13 @@
 
 export const HOURS_PER_YEAR = 24 * 365; // 8760 — simple (non-compounded) annualization
 
+// Hyperliquid's fixed interest component, quoted per hour: 0.01% per 8h paid
+// ⅛ hourly. Whenever a core perp's premium sits inside the ±0.05% clamp band
+// — the resting state for liquid majors in a calm market — funding pins at
+// EXACTLY this value, so many/all majors showing an identical 0.00125%/1h is
+// real data, not a placeholder. Rows pinned here get a "floor" chip in the UI.
+export const HL_INTEREST_FLOOR_HOURLY = 0.0000125;
+
 export const VENUES = {
   // -------------------------------------------------------------------------
   // HYPERLIQUID — funding is paid EVERY HOUR on every perp (incl. HIP-3).
