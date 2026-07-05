@@ -11,7 +11,9 @@ name: Refresh funding snapshot
 
 on:
   schedule:
-    - cron: '17 */6 * * *' # every 6 hours (off the top of the hour, politely)
+    - cron: '17 * * * *' # hourly (off the top of the hour, politely) — the page
+                         # quotes predicted next-settlement rates and Hyperliquid
+                         # settles hourly, so anything slower is stale on arrival
   workflow_dispatch: {}     # manual "Run workflow" button
 
 permissions:

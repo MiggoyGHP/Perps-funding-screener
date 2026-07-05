@@ -77,9 +77,11 @@ node --test tests/compute.test.mjs
      ```
 
    - automatically: the included [`.github/workflows/refresh-snapshot.yml`](.github/workflows/refresh-snapshot.yml)
-     re-snapshots every 6 hours and commits when changed (GitHub runners are not
+     re-snapshots hourly and commits when changed (GitHub runners are not
      exchange-geo-blocked, so this also sidesteps local ISP blocks). Delete that file if you
-     don't want the automation.
+     don't want the automation. Note: GitHub suspends scheduled workflows after 60 days
+     without repository activity — any push (including the bot's own snapshot commits)
+     resets the clock, so this only matters if the data stops changing entirely.
 
 ## Project layout
 
