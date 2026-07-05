@@ -1,0 +1,356 @@
+/* ---------------------------------------------------------------------------
+   Perp Funding Screener — dark desk-terminal aesthetic.
+   Identity: IBM Plex Mono carries the masthead and every number (terminal
+   vernacular, tabular figures); IBM Plex Sans carries prose. One warm
+   phosphor-amber is reserved for data provenance — the same color that says
+   SAMPLE says "read the label", so honesty about the data is part of the
+   visual system, not a footnote.
+--------------------------------------------------------------------------- */
+
+:root {
+  --ink: #0a0e15;        /* page */
+  --panel: #101623;      /* cards, table head */
+  --panel-2: #0d1320;    /* row hover, chips */
+  --line: #1e2836;       /* hairlines */
+  --text: #d9e1ec;
+  --dim: #8593a9;
+  --up: #3fd68f;         /* funding received / clears */
+  --down: #f0616d;       /* funding paid / misses */
+  --phosphor: #ffb454;   /* provenance, sample, flags */
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { color-scheme: dark; }
+
+body {
+  margin: 0 auto;
+  padding: 32px clamp(16px, 4vw, 48px) 64px;
+  max-width: 1180px;
+  background:
+    radial-gradient(1200px 400px at 70% -10%, rgba(255, 180, 84, 0.05), transparent 60%),
+    var(--ink);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* --- masthead ------------------------------------------------------------ */
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.mast-title {
+  margin: 0;
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: clamp(24px, 4vw, 38px);
+  letter-spacing: 0.14em;
+  line-height: 1.1;
+}
+
+.mast-sub {
+  margin: 10px 0 0;
+  max-width: 58ch;
+  color: var(--dim);
+}
+.mast-sub em { color: var(--text); font-style: normal; border-bottom: 1px dotted var(--phosphor); }
+
+/* --- provenance badge ------------------------------------------------------ */
+
+.provenance {
+  font-family: var(--mono);
+  font-size: 12px;
+  min-width: 230px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--panel);
+  letter-spacing: 0.08em;
+}
+.badge .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+
+.badge.sample { border-color: color-mix(in srgb, var(--phosphor) 55%, transparent); color: var(--phosphor); }
+.badge.sample .dot { background: var(--phosphor); }
+.badge.snapshot { color: var(--text); }
+.badge.snapshot .dot { background: var(--up); }
+.badge.live { color: var(--up); border-color: color-mix(in srgb, var(--up) 45%, transparent); }
+.badge.live .dot { background: var(--up); animation: pulse 2s ease-in-out infinite; }
+
+@keyframes pulse { 50% { opacity: 0.3; } }
+
+.badge-detail { margin: 6px 2px 0; color: var(--dim); font-size: 11.5px; line-height: 1.5; }
+.badge-detail.warn { color: var(--phosphor); }
+
+/* --- convention plaques (the signature element) ----------------------------- */
+
+.plaques {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 12px;
+  margin: 24px 0 8px;
+}
+
+.plaque {
+  position: relative;
+  padding: 14px 16px 12px 18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.plaque::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--phosphor);
+  opacity: 0.75;
+}
+
+.plaque h3 {
+  margin: 0 0 2px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.plaque .cadence { color: var(--dim); font-size: 12.5px; margin: 0 0 8px; }
+
+.plaque .rule {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 6px 9px;
+  margin: 0 0 8px;
+}
+.plaque .rule b { color: var(--phosphor); font-weight: 600; }
+
+.plaque .fine { margin: 0; color: var(--dim); font-size: 11.5px; line-height: 1.5; }
+.plaque .fine a { color: inherit; }
+
+/* --- controls ---------------------------------------------------------------- */
+
+.controls {
+  margin: 20px 0 8px;
+  padding: 14px 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.controls-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 26px;
+  align-items: flex-end;
+}
+
+.ctl-group { display: flex; flex-wrap: wrap; gap: 14px 18px; align-items: flex-end; }
+
+.ctl-group + .ctl-group { border-left: 1px solid var(--line); padding-left: 26px; }
+
+.ctl-legend {
+  flex-basis: 100%;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.ctl { display: flex; flex-direction: column; gap: 4px; }
+
+.ctl label { font-size: 12px; color: var(--dim); white-space: nowrap; }
+
+.ctl .field { display: flex; align-items: baseline; gap: 4px; }
+
+.ctl input {
+  width: 5.2em;
+  padding: 5px 7px;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--text);
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+}
+.ctl input:focus-visible { outline: 2px solid var(--phosphor); outline-offset: 1px; }
+.ctl input[aria-invalid='true'] { border-color: var(--down); }
+
+.ctl .unit { font-family: var(--mono); font-size: 12px; color: var(--dim); }
+
+.controls-warning { margin: 12px 2px 0; font-size: 12.5px; color: var(--phosphor); }
+
+/* --- sections / tables --------------------------------------------------------- */
+
+.section-head { margin: 36px 0 10px; }
+
+h2 {
+  margin: 0 0 4px;
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.section-note { margin: 0; color: var(--dim); font-size: 13px; max-width: 84ch; }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; }
+
+table.grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  min-width: 760px;
+}
+
+.grid thead th {
+  position: relative;
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  background: var(--panel);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.grid th.num, .grid td.num {
+  text-align: right;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.grid tbody td { padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: baseline; }
+.grid tbody tr:last-child td { border-bottom: none; }
+.grid tbody tr:hover td { background: var(--panel-2); }
+
+/* asset group separation: first venue row of each asset carries the label */
+td.asset-cell { font-family: var(--mono); font-weight: 600; letter-spacing: 0.04em; white-space: nowrap; }
+tr.asset-first td { border-top: 1px solid color-mix(in srgb, var(--line) 100%, transparent); }
+tr.asset-cont td.asset-cell { color: transparent; user-select: none; }
+
+td.venue-cell { color: var(--dim); white-space: nowrap; }
+
+/* rate + interval chip */
+.rate-pos { color: var(--up); }
+.rate-neg { color: var(--down); }
+
+.chip {
+  display: inline-block;
+  margin-left: 7px;
+  padding: 1px 6px 2px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--dim);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+.chip.nonstandard { color: var(--phosphor); border-color: color-mix(in srgb, var(--phosphor) 45%, transparent); }
+
+.settles { display: block; font-size: 11px; color: var(--dim); margin-top: 1px; }
+.flagline { color: var(--phosphor); max-width: 34ch; margin-left: auto; white-space: normal; }
+
+/* verdicts */
+.verdict { white-space: nowrap; }
+.verdict .meter {
+  display: inline-block;
+  height: 4px;
+  border-radius: 2px;
+  margin-right: 8px;
+  vertical-align: 2px;
+  min-width: 2px;
+}
+.verdict.clears { color: var(--up); }
+.verdict.clears .meter { background: var(--up); }
+.verdict.misses { color: var(--down); }
+.verdict.misses .meter { background: var(--down); }
+
+.cell-muted { color: var(--dim); font-size: 12.5px; }
+.cell-warn { color: var(--phosphor); font-size: 12.5px; }
+
+/* --- tooltips (CSS-only, on th[data-tip]) ---------------------------------------- */
+
+[data-tip]:hover::after, [data-tip]:focus-visible::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  z-index: 10;
+  width: 300px;
+  padding: 9px 11px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  line-height: 1.5;
+  color: var(--text);
+  background: #161e2e;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  white-space: normal;
+}
+.grid thead th:last-child[data-tip]:hover::after { left: auto; right: 0; }
+
+/* --- footer ------------------------------------------------------------------------ */
+
+.notes { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); }
+.notes h2 { color: var(--dim); }
+.notes ul { margin: 10px 0 0; padding-left: 18px; color: var(--dim); font-size: 13px; }
+.notes li { margin-bottom: 7px; max-width: 92ch; }
+.notes strong { color: var(--text); font-weight: 500; }
+
+/* --- load-in + motion discipline ----------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .plaque, .grid tbody tr { animation: rise 0.4s ease-out backwards; }
+  .plaque:nth-child(2) { animation-delay: 0.05s; }
+  .plaque:nth-child(3) { animation-delay: 0.1s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(4px); } }
+}
+
+@media (max-width: 640px) {
+  .masthead { flex-direction: column; }
+  .ctl-group + .ctl-group { border-left: none; padding-left: 0; }
+}

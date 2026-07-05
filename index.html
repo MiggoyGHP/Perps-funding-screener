@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perp Funding Screener — delta-neutral carry monitor</title>
+  <meta name="description" content="Read-only monitor of perpetual funding rates on Hyperliquid, Binance and Bybit, with per-venue annualization done correctly and a carry-vs-hurdle verdict." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Non-blocking font load: on networks where Google Fonts is blackholed,
+       first paint must not stall — the system fallback stacks render instead. -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>⌁</text></svg>" />
+</head>
+<body>
+  <header class="masthead">
+    <div>
+      <p class="eyebrow">Delta-neutral carry desk · read-only monitor</p>
+      <h1 class="mast-title">PERP FUNDING SCREENER</h1>
+      <p class="mast-sub">
+        Funding rates on Hyperliquid, Binance USDⓈ-M and Bybit linear — annualized by each market's
+        <em>own</em> payment convention — netted against costs and compared to your hurdle.
+      </p>
+    </div>
+    <div class="provenance" id="badge" role="status" aria-live="polite">
+      <!-- data-provenance badge rendered by ui.js -->
+    </div>
+  </header>
+
+  <!-- The point of the piece: each venue's annualization convention, stated
+       in the open, with the multiplier used in the table below. -->
+  <section class="plaques" id="plaques" aria-label="Per-venue funding conventions"></section>
+
+  <section class="controls" aria-label="Cost and hurdle assumptions">
+    <div class="controls-grid" id="controls"></div>
+    <p class="controls-warning" id="financing-warning" hidden>
+      Financing &gt; 0 while the hurdle still charges the risk-free rate on the same capital —
+      cost of capital is being counted twice. For a financed carry, compare against the risk-premium
+      portion of the hurdle only.
+    </p>
+  </section>
+
+  <main>
+    <section aria-labelledby="carry-h">
+      <div class="section-head">
+        <h2 id="carry-h">Carry — long spot / short perp</h2>
+        <p class="section-note">
+          Positive funding pays the short perp, so the classic cash-and-carry collects it.
+          Rates shown are <strong>predicted for the next settlement</strong> of each market.
+        </p>
+      </div>
+      <div class="table-wrap">
+        <table class="grid" id="carry-table">
+          <thead>
+            <tr>
+              <th scope="col">Asset</th>
+              <th scope="col">Venue</th>
+              <th scope="col" class="num" data-tip="The venue's native quote: a decimal rate per that market's own funding interval. The interval chip is per-symbol data, read from the venue.">Funding / interval</th>
+              <th scope="col" class="num" data-tip="Simple annualization: rate × (8,760 ÷ interval hours). No compounding. See the convention plaques above for each venue's basis.">Gross APR</th>
+              <th scope="col" class="num" data-tip="Gross APR − round-trip fees on both legs amortized over the holding period − spot financing.">Net carry</th>
+              <th scope="col" class="num" data-tip="Hurdle = risk-free + risk premium. Verdict is net carry minus hurdle.">vs hurdle</th>
+            </tr>
+          </thead>
+          <tbody id="carry-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="spread-h">
+      <div class="section-head">
+        <h2 id="spread-h">Cross-venue funding spreads</h2>
+        <p class="section-note">
+          Short the perp where funding is richest, long it where it's cheapest — no spot leg.
+          Costs are four perp fills at each venue's own fee. Legs settle on different clocks and
+          different notional bases (Hyperliquid: oracle price; Binance/Bybit: mark price) — that
+          timing/basis risk is not modeled.
+        </p>
+      </div>
+      <div class="table-wrap">
+        <table class="grid" id="spread-table">
+          <thead>
+            <tr>
+              <th scope="col">Asset</th>
+              <th scope="col">Trade</th>
+              <th scope="col" class="num" data-tip="Difference of the two legs' gross APRs, each annualized by its own interval before comparison.">Spread APR</th>
+              <th scope="col" class="num" data-tip="Spread APR − four perp fills (open+close on each venue) amortized over the holding period.">Net</th>
+              <th scope="col" class="num" data-tip="Same hurdle as the carry table: risk-free + risk premium.">vs hurdle</th>
+            </tr>
+          </thead>
+          <tbody id="spread-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="notes">
+    <h2>Conventions &amp; caveats</h2>
+    <ul id="footnotes">
+      <li><strong>Annualization is simple, not compounded</strong> — APR = per-interval rate × intervals per year, the desk convention for quoting funding.</li>
+      <li><strong>Intervals are per-symbol data.</strong> Binance's HYPEUSDT settles every 4h while BTCUSDT settles every 8h; both venues' majority interval is now 4h. This page reads the interval per market from the venue itself and shows it next to every rate.</li>
+      <li><strong>Predicted ≠ settled.</strong> Displayed rates are each venue's estimate for the upcoming settlement (consistent basis across venues); realized funding will differ.</li>
+      <li><strong>OIL (xyz:CL)</strong> is a HIP-3 builder-deployed synthetic on Hyperliquid (trade.xyz): deployer-set oracle, 0.5 funding multiplier already inside the quoted rate, and no investable spot leg — so no carry verdict is offered.</li>
+      <li><strong>Read-only demonstration.</strong> No execution, no accounts, no keys. Nothing here is investment advice.</li>
+    </ul>
+  </footer>
+
+  <script type="module">
+    import { init } from './js/ui.js';
+    init();
+  </script>
+</body>
+</html>
