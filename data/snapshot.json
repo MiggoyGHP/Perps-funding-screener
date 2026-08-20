@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20T04:01:01.086Z",
+  "generatedAt": "2026-08-20T04:55:07.952Z",
   "source": "snapshot",
   "errors": {
     "binance": "451  from https://fapi.binance.com/fapi/v1/premiumIndex",
@@ -42,7 +42,7 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.00013532",
+              "fundingRate": "0.00009698",
               "nextFundingTime": 1787212800000,
               "fundingIntervalHours": 8
             }
@@ -58,7 +58,7 @@
           [
             "BybitPerp",
             {
-              "fundingRate": "0.00004751",
+              "fundingRate": "0.0000439",
               "nextFundingTime": 1787212800000,
               "fundingIntervalHours": 8
             }
@@ -162,7 +162,7 @@
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000502448",
+              "fundingRate": "0.0000125",
               "nextFundingTime": 1787198400000,
               "fundingIntervalHours": 1
             }
@@ -179,7 +179,7 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.00004994",
+              "fundingRate": "0.00002662",
               "nextFundingTime": 1787212800000,
               "fundingIntervalHours": 8
             }
@@ -195,7 +195,7 @@
           [
             "BybitPerp",
             {
-              "fundingRate": "-0.00000398",
+              "fundingRate": "0.00000984",
               "nextFundingTime": 1787212800000,
               "fundingIntervalHours": 8
             }
@@ -337,18 +337,18 @@
       [
         {
           "funding": "0.00000625",
-          "openInterest": "1953154.156",
-          "prevDayPx": "84.701",
-          "dayNtlVlm": "133067215.3041539341",
-          "premium": "-0.0002959631",
-          "oraclePx": "84.47",
-          "markPx": "84.459",
-          "midPx": "84.443",
+          "openInterest": "1952092.0579999997",
+          "prevDayPx": "84.612",
+          "dayNtlVlm": "132318862.0451209545",
+          "premium": "-0.0001066098",
+          "oraclePx": "84.42",
+          "markPx": "84.416",
+          "midPx": "84.411",
           "impactPxs": [
-            "84.436",
-            "84.454"
+            "84.407",
+            "84.415"
           ],
-          "dayBaseVlm": "1570523.9269999987"
+          "dayBaseVlm": "1561701.9689999993"
         }
       ]
     ]
@@ -358,14 +358,8 @@
   "hlCrossCheck": {
     "endpoint": "metaAndAssetCtxs",
     "checked": 11,
-    "confirmed": 10,
-    "divergences": [
-      {
-        "coin": "HYPE",
-        "predictedFundings": "0.0000502448",
-        "metaAndAssetCtxs": "0.0000672786"
-      }
-    ],
+    "confirmed": 11,
+    "divergences": [],
     "floorSuspects": []
   }
 }
