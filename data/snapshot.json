@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T07:03:41.241Z",
+  "generatedAt": "2026-08-23T07:48:54.980Z",
   "source": "snapshot",
   "errors": {
     "binance": "451  from https://fapi.binance.com/fapi/v1/premiumIndex",
@@ -42,7 +42,7 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.00014294",
+              "fundingRate": "0.00015412",
               "nextFundingTime": 1787472000000,
               "fundingIntervalHours": 8
             }
@@ -50,7 +50,7 @@
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000153781",
+              "fundingRate": "0.0000189795",
               "nextFundingTime": 1787468400000,
               "fundingIntervalHours": 1
             }
@@ -162,7 +162,7 @@
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000125",
+              "fundingRate": "0.0000295815",
               "nextFundingTime": 1787468400000,
               "fundingIntervalHours": 1
             }
@@ -187,7 +187,7 @@
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000293712",
+              "fundingRate": "0.0000389732",
               "nextFundingTime": 1787468400000,
               "fundingIntervalHours": 1
             }
@@ -266,7 +266,7 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.0001",
+              "fundingRate": "0.00010657",
               "nextFundingTime": 1787472000000,
               "fundingIntervalHours": 8
             }
@@ -274,7 +274,7 @@
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000411819",
+              "fundingRate": "0.0000486183",
               "nextFundingTime": 1787468400000,
               "fundingIntervalHours": 1
             }
@@ -303,7 +303,7 @@
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000224929",
+              "fundingRate": "0.0000311191",
               "nextFundingTime": 1787468400000,
               "fundingIntervalHours": 1
             }
@@ -337,18 +337,18 @@
       [
         {
           "funding": "0.00000625",
-          "openInterest": "2049486.1980000001",
-          "prevDayPx": "86.817",
-          "dayNtlVlm": "13643127.3753459994",
-          "premium": "0.0003465003",
-          "oraclePx": "86.58",
-          "markPx": "86.593",
-          "midPx": "86.61",
+          "openInterest": "2049264.6340000003",
+          "prevDayPx": "86.76",
+          "dayNtlVlm": "13706639.5889640003",
+          "premium": "0.0002367288",
+          "oraclePx": "86.597",
+          "markPx": "86.618",
+          "midPx": "86.618",
           "impactPxs": [
-            "86.603",
-            "86.617"
+            "86.613",
+            "86.622"
           ],
-          "dayBaseVlm": "157585.7329999999"
+          "dayBaseVlm": "158322.8549999999"
         }
       ]
     ]
@@ -358,27 +358,32 @@
   "hlCrossCheck": {
     "endpoint": "metaAndAssetCtxs",
     "checked": 11,
-    "confirmed": 7,
+    "confirmed": 6,
     "divergences": [
       {
         "coin": "BNB",
-        "predictedFundings": "0.0000153781",
-        "metaAndAssetCtxs": "0.0000126153"
+        "predictedFundings": "0.0000189795",
+        "metaAndAssetCtxs": "0.000018933"
+      },
+      {
+        "coin": "HYPE",
+        "predictedFundings": "0.0000295815",
+        "metaAndAssetCtxs": "0.0000292386"
       },
       {
         "coin": "LINK",
-        "predictedFundings": "0.0000293712",
-        "metaAndAssetCtxs": "0.000027536"
+        "predictedFundings": "0.0000389732",
+        "metaAndAssetCtxs": "0.000039039"
       },
       {
         "coin": "SUI",
-        "predictedFundings": "0.0000411819",
-        "metaAndAssetCtxs": "0.0000395232"
+        "predictedFundings": "0.0000486183",
+        "metaAndAssetCtxs": "0.0000483466"
       },
       {
         "coin": "XRP",
-        "predictedFundings": "0.0000224929",
-        "metaAndAssetCtxs": "0.0000176242"
+        "predictedFundings": "0.0000311191",
+        "metaAndAssetCtxs": "0.0000308824"
       }
     ],
     "floorSuspects": []
