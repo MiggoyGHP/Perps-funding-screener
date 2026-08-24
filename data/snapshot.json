@@ -1,10 +1,7 @@
 {
-  "generatedAt": "2026-08-24T05:04:03.535Z",
+  "generatedAt": "2026-08-24T05:55:17.504Z",
   "source": "snapshot",
-  "errors": {
-    "binance": "451  from https://fapi.binance.com/fapi/v1/premiumIndex",
-    "bybit": "403 Forbidden from https://api.bytick.com/v5/market/tickers?category=linear"
-  },
+  "errors": {},
   "hyperliquid": {
     "predictedFundings": [
       [
@@ -42,7 +39,7 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.00005237",
+              "fundingRate": "0.0000358",
               "nextFundingTime": 1787558400000,
               "fundingIntervalHours": 8
             }
@@ -50,7 +47,7 @@
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000247757",
+              "fundingRate": "0.0000323233",
               "nextFundingTime": 1787547600000,
               "fundingIntervalHours": 1
             }
@@ -79,7 +76,7 @@
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000192285",
+              "fundingRate": "0.0000134566",
               "nextFundingTime": 1787547600000,
               "fundingIntervalHours": 1
             }
@@ -187,7 +184,7 @@
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000236852",
+              "fundingRate": "0.0000197229",
               "nextFundingTime": 1787547600000,
               "fundingIntervalHours": 1
             }
@@ -336,25 +333,1108 @@
       },
       [
         {
-          "funding": "-0.0000033821",
-          "openInterest": "2039382.4140000001",
-          "prevDayPx": "86.552",
-          "dayNtlVlm": "39533240.5140499994",
-          "premium": "-0.0003909669",
-          "oraclePx": "85.685",
-          "markPx": "85.655",
-          "midPx": "85.654",
+          "funding": "-0.0000051235",
+          "openInterest": "2036660.1260000002",
+          "prevDayPx": "86.54",
+          "dayNtlVlm": "39716403.9022090137",
+          "premium": "-0.00042007",
+          "oraclePx": "85.7",
+          "markPx": "85.664",
+          "midPx": "85.663",
           "impactPxs": [
-            "85.647",
-            "85.656"
+            "85.661",
+            "85.667"
           ],
-          "dayBaseVlm": "459338.1189999999"
+          "dayBaseVlm": "461529.534"
         }
       ]
     ]
   },
-  "binance": null,
-  "bybit": null,
+  "binance": {
+    "premiumIndex": [
+      {
+        "symbol": "LINKUSDT",
+        "markPrice": "11.51700000",
+        "indexPrice": "11.51554324",
+        "estimatedSettlePrice": "11.52980002",
+        "lastFundingRate": "0.00010000",
+        "interestRate": "0.00010000",
+        "nextFundingTime": 1787558400000,
+        "time": 1787550917001
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "markPrice": "0.09194465",
+        "indexPrice": "0.09193561",
+        "estimatedSettlePrice": "0.09194973",
+        "lastFundingRate": "0.00010000",
+        "interestRate": "0.00010000",
+        "nextFundingTime": 1787558400000,
+        "time": 1787550917001
+      },
+      {
+        "symbol": "BNBUSDT",
+        "markPrice": "699.56324826",
+        "indexPrice": "699.12127255",
+        "estimatedSettlePrice": "697.93954689",
+        "lastFundingRate": "0.00003543",
+        "interestRate": "0.00000000",
+        "nextFundingTime": 1787558400000,
+        "time": 1787550917001
+      },
+      {
+        "symbol": "XRPUSDT",
+        "markPrice": "1.47670000",
+        "indexPrice": "1.47670855",
+        "estimatedSettlePrice": "1.47408159",
+        "lastFundingRate": "0.00010000",
+        "interestRate": "0.00010000",
+        "nextFundingTime": 1787558400000,
+        "time": 1787550917001
+      },
+      {
+        "symbol": "HYPEUSDT",
+        "markPrice": "79.62400000",
+        "indexPrice": "79.59800000",
+        "estimatedSettlePrice": "79.72880314",
+        "lastFundingRate": "0.00005000",
+        "interestRate": "0.00010000",
+        "nextFundingTime": 1787558400000,
+        "time": 1787550917001
+      },
+      {
+        "symbol": "AVAXUSDT",
+        "markPrice": "7.49303154",
+        "indexPrice": "7.49456904",
+        "estimatedSettlePrice": "7.48711106",
+        "lastFundingRate": "0.00010000",
+        "interestRate": "0.00010000",
+        "nextFundingTime": 1787558400000,
+        "time": 1787550917001
+      },
+      {
+        "symbol": "SOLUSDT",
+        "markPrice": "94.19000000",
+        "indexPrice": "94.19484408",
+        "estimatedSettlePrice": "94.01908168",
+        "lastFundingRate": "0.00010000",
+        "interestRate": "0.00010000",
+        "nextFundingTime": 1787558400000,
+        "time": 1787550917001
+      },
+      {
+        "symbol": "ETHUSDT",
+        "markPrice": "2448.28000000",
+        "indexPrice": "2448.38255814",
+        "estimatedSettlePrice": "2447.62957418",
+        "lastFundingRate": "0.00010000",
+        "interestRate": "0.00010000",
+        "nextFundingTime": 1787558400000,
+        "time": 1787550917001
+      },
+      {
+        "symbol": "LTCUSDT",
+        "markPrice": "52.07076467",
+        "indexPrice": "52.06941176",
+        "estimatedSettlePrice": "51.99439100",
+        "lastFundingRate": "0.00010000",
+        "interestRate": "0.00010000",
+        "nextFundingTime": 1787558400000,
+        "time": 1787550917001
+      },
+      {
+        "symbol": "SUIUSDT",
+        "markPrice": "0.82704085",
+        "indexPrice": "0.82648281",
+        "estimatedSettlePrice": "0.82509991",
+        "lastFundingRate": "0.00010000",
+        "interestRate": "0.00010000",
+        "nextFundingTime": 1787558400000,
+        "time": 1787550917001
+      },
+      {
+        "symbol": "BTCUSDT",
+        "markPrice": "77105.22041229",
+        "indexPrice": "77095.80782609",
+        "estimatedSettlePrice": "77045.55285956",
+        "lastFundingRate": "0.00010000",
+        "interestRate": "0.00010000",
+        "nextFundingTime": 1787558400000,
+        "time": 1787550917001
+      }
+    ],
+    "fundingInfo": [
+      {
+        "symbol": "HYPEUSDT",
+        "adjustedFundingRateCap": "0.02000000",
+        "adjustedFundingRateFloor": "-0.02000000",
+        "fundingIntervalHours": 4,
+        "disclaimer": false,
+        "updateTime": 1748601134819
+      },
+      {
+        "symbol": "ETHUSDT",
+        "adjustedFundingRateCap": "0.00300",
+        "adjustedFundingRateFloor": "-0.00300",
+        "fundingIntervalHours": 8,
+        "disclaimer": true,
+        "updateTime": null
+      },
+      {
+        "symbol": "SUIUSDT",
+        "adjustedFundingRateCap": "0.0075",
+        "adjustedFundingRateFloor": "-0.0075",
+        "fundingIntervalHours": 8,
+        "disclaimer": true,
+        "updateTime": null
+      },
+      {
+        "symbol": "LTCUSDT",
+        "adjustedFundingRateCap": "0.00375",
+        "adjustedFundingRateFloor": "-0.00375",
+        "fundingIntervalHours": 8,
+        "disclaimer": true,
+        "updateTime": null
+      },
+      {
+        "symbol": "XRPUSDT",
+        "adjustedFundingRateCap": "0.00375",
+        "adjustedFundingRateFloor": "-0.00375",
+        "fundingIntervalHours": 8,
+        "disclaimer": true,
+        "updateTime": null
+      },
+      {
+        "symbol": "LINKUSDT",
+        "adjustedFundingRateCap": "0.00375",
+        "adjustedFundingRateFloor": "-0.00375",
+        "fundingIntervalHours": 8,
+        "disclaimer": true,
+        "updateTime": null
+      },
+      {
+        "symbol": "BTCUSDT",
+        "adjustedFundingRateCap": "0.00300",
+        "adjustedFundingRateFloor": "-0.00300",
+        "fundingIntervalHours": 8,
+        "disclaimer": true,
+        "updateTime": null
+      },
+      {
+        "symbol": "SOLUSDT",
+        "adjustedFundingRateCap": "0.00375",
+        "adjustedFundingRateFloor": "-0.00375",
+        "fundingIntervalHours": 8,
+        "disclaimer": true,
+        "updateTime": null
+      },
+      {
+        "symbol": "AVAXUSDT",
+        "adjustedFundingRateCap": "0.00375",
+        "adjustedFundingRateFloor": "-0.00375",
+        "fundingIntervalHours": 8,
+        "disclaimer": true,
+        "updateTime": null
+      },
+      {
+        "symbol": "BNBUSDT",
+        "adjustedFundingRateCap": "0.00375",
+        "adjustedFundingRateFloor": "-0.00375",
+        "fundingIntervalHours": 8,
+        "disclaimer": true,
+        "updateTime": null
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "adjustedFundingRateCap": "0.004875",
+        "adjustedFundingRateFloor": "-0.004875",
+        "fundingIntervalHours": 8,
+        "disclaimer": true,
+        "updateTime": null
+      }
+    ]
+  },
+  "bybit": {
+    "tickers": {
+      "category": "linear",
+      "list": [
+        {
+          "symbol": "AVAXUSDT",
+          "lastPrice": "7.492",
+          "indexPrice": "7.495",
+          "markPrice": "7.492",
+          "prevPrice24h": "7.329",
+          "price24hPcnt": "0.02224",
+          "highPrice24h": "7.674",
+          "lowPrice24h": "7.293",
+          "prevPrice1h": "7.470",
+          "openInterest": "6389340",
+          "openInterestValue": "47868935.28",
+          "singleOpenInterest": "3194670",
+          "singleOpenInterestValue": "23934467.64",
+          "turnover24h": "24262886.4844",
+          "volume24h": "3223836.6000",
+          "fundingRate": "0.0001",
+          "nextFundingTime": "1787558400000",
+          "predictedDeliveryPrice": "",
+          "basisRate": "",
+          "deliveryFeeRate": "",
+          "deliveryTime": "0",
+          "ask1Size": "410.6",
+          "bid1Price": "7.491",
+          "ask1Price": "7.492",
+          "bid1Size": "44.3",
+          "basis": "",
+          "preOpenPrice": "",
+          "preQty": "",
+          "curPreListingPhase": "",
+          "fundingIntervalHour": "8",
+          "basisRateYear": "",
+          "fundingCap": "0.0066"
+        },
+        {
+          "symbol": "BNBUSDT",
+          "lastPrice": "699.00",
+          "indexPrice": "699.21",
+          "markPrice": "699.02",
+          "prevPrice24h": "684.30",
+          "price24hPcnt": "0.021481",
+          "highPrice24h": "707.20",
+          "lowPrice24h": "680.30",
+          "prevPrice1h": "695.80",
+          "openInterest": "150951.08",
+          "openInterestValue": "105517823.94",
+          "singleOpenInterest": "75475.54",
+          "singleOpenInterestValue": "52758911.97",
+          "turnover24h": "29358784.9540",
+          "volume24h": "42193.1500",
+          "fundingRate": "0.0001",
+          "nextFundingTime": "1787558400000",
+          "predictedDeliveryPrice": "",
+          "basisRate": "",
+          "deliveryFeeRate": "",
+          "deliveryTime": "0",
+          "ask1Size": "1.49",
+          "bid1Price": "699.00",
+          "ask1Price": "699.10",
+          "bid1Size": "15.73",
+          "basis": "",
+          "preOpenPrice": "",
+          "preQty": "",
+          "curPreListingPhase": "",
+          "fundingIntervalHour": "8",
+          "basisRateYear": "",
+          "fundingCap": "0.0066"
+        },
+        {
+          "symbol": "BTCUSDT",
+          "lastPrice": "77116.60",
+          "indexPrice": "77123.39",
+          "markPrice": "77114.60",
+          "prevPrice24h": "76159.60",
+          "price24hPcnt": "0.012565",
+          "highPrice24h": "78044.40",
+          "lowPrice24h": "75888.00",
+          "prevPrice1h": "76832.40",
+          "openInterest": "48401.466",
+          "openInterestValue": "3732459690.00",
+          "singleOpenInterest": "24200.733",
+          "singleOpenInterestValue": "1866229845.00",
+          "turnover24h": "3841912142.8582",
+          "volume24h": "49814.2420",
+          "fundingRate": "0.0001",
+          "nextFundingTime": "1787558400000",
+          "predictedDeliveryPrice": "",
+          "basisRate": "",
+          "deliveryFeeRate": "",
+          "deliveryTime": "0",
+          "ask1Size": "1.190",
+          "bid1Price": "77116.60",
+          "ask1Price": "77116.70",
+          "bid1Size": "1.644",
+          "basis": "",
+          "preOpenPrice": "",
+          "preQty": "",
+          "curPreListingPhase": "",
+          "fundingIntervalHour": "8",
+          "basisRateYear": "",
+          "fundingCap": "0.00333"
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "lastPrice": "0.09194",
+          "indexPrice": "0.09196",
+          "markPrice": "0.09193",
+          "prevPrice24h": "0.08967",
+          "price24hPcnt": "0.025315",
+          "highPrice24h": "0.09455",
+          "lowPrice24h": "0.08891",
+          "prevPrice1h": "0.09197",
+          "openInterest": "1558739111",
+          "openInterestValue": "143294886.47",
+          "singleOpenInterest": "779369556",
+          "singleOpenInterestValue": "71647443.28",
+          "turnover24h": "227470102.0426",
+          "volume24h": "2468093502.0000",
+          "fundingRate": "0.0001",
+          "nextFundingTime": "1787558400000",
+          "predictedDeliveryPrice": "",
+          "basisRate": "",
+          "deliveryFeeRate": "",
+          "deliveryTime": "0",
+          "ask1Size": "86837",
+          "bid1Price": "0.09194",
+          "ask1Price": "0.09195",
+          "bid1Size": "163936",
+          "basis": "",
+          "preOpenPrice": "",
+          "preQty": "",
+          "curPreListingPhase": "",
+          "fundingIntervalHour": "8",
+          "basisRateYear": "",
+          "fundingCap": "0.0058"
+        },
+        {
+          "symbol": "ETHUSDT",
+          "lastPrice": "2448.26",
+          "indexPrice": "2449.16",
+          "markPrice": "2448.26",
+          "prevPrice24h": "2375.24",
+          "price24hPcnt": "0.030742",
+          "highPrice24h": "2485.43",
+          "lowPrice24h": "2370.00",
+          "prevPrice1h": "2432.13",
+          "openInterest": "790083.36",
+          "openInterestValue": "1934329486.95",
+          "singleOpenInterest": "395041.68",
+          "singleOpenInterestValue": "967164743.48",
+          "turnover24h": "3082272430.8243",
+          "volume24h": "1264939.4600",
+          "fundingRate": "0.0001",
+          "nextFundingTime": "1787558400000",
+          "predictedDeliveryPrice": "",
+          "basisRate": "",
+          "deliveryFeeRate": "",
+          "deliveryTime": "0",
+          "ask1Size": "7.86",
+          "bid1Price": "2448.25",
+          "ask1Price": "2448.26",
+          "bid1Size": "73.13",
+          "basis": "",
+          "preOpenPrice": "",
+          "preQty": "",
+          "curPreListingPhase": "",
+          "fundingIntervalHour": "8",
+          "basisRateYear": "",
+          "fundingCap": "0.00333"
+        },
+        {
+          "symbol": "HYPEUSDT",
+          "lastPrice": "79.640",
+          "indexPrice": "79.623",
+          "markPrice": "79.636",
+          "prevPrice24h": "78.040",
+          "price24hPcnt": "0.020502",
+          "highPrice24h": "83.520",
+          "lowPrice24h": "77.280",
+          "prevPrice1h": "79.910",
+          "openInterest": "3650545.25",
+          "openInterestValue": "290714821.53",
+          "singleOpenInterest": "1825272.63",
+          "singleOpenInterestValue": "145357411.16",
+          "turnover24h": "407942735.6042",
+          "volume24h": "5067194.2200",
+          "fundingRate": "0.0001",
+          "nextFundingTime": "1787558400000",
+          "predictedDeliveryPrice": "",
+          "basisRate": "",
+          "deliveryFeeRate": "",
+          "deliveryTime": "0",
+          "ask1Size": "75.91",
+          "bid1Price": "79.630",
+          "ask1Price": "79.640",
+          "bid1Size": "32.38",
+          "basis": "",
+          "preOpenPrice": "",
+          "preQty": "",
+          "curPreListingPhase": "Finished",
+          "fundingIntervalHour": "8",
+          "basisRateYear": "",
+          "fundingCap": "0.0063"
+        },
+        {
+          "symbol": "LINKUSDT",
+          "lastPrice": "11.515",
+          "indexPrice": "11.516",
+          "markPrice": "11.515",
+          "prevPrice24h": "11.160",
+          "price24hPcnt": "0.03181",
+          "highPrice24h": "11.732",
+          "lowPrice24h": "11.094",
+          "prevPrice1h": "11.465",
+          "openInterest": "7033741.8",
+          "openInterestValue": "80993536.83",
+          "singleOpenInterest": "3516870.9",
+          "singleOpenInterestValue": "40496768.41",
+          "turnover24h": "71555782.9357",
+          "volume24h": "6252169.8000",
+          "fundingRate": "0.0001",
+          "nextFundingTime": "1787558400000",
+          "predictedDeliveryPrice": "",
+          "basisRate": "",
+          "deliveryFeeRate": "",
+          "deliveryTime": "0",
+          "ask1Size": "25.2",
+          "bid1Price": "11.516",
+          "ask1Price": "11.517",
+          "bid1Size": "129.3",
+          "basis": "",
+          "preOpenPrice": "",
+          "preQty": "",
+          "curPreListingPhase": "",
+          "fundingIntervalHour": "8",
+          "basisRateYear": "",
+          "fundingCap": "0.0066"
+        },
+        {
+          "symbol": "LTCUSDT",
+          "lastPrice": "52.04",
+          "indexPrice": "52.09",
+          "markPrice": "52.05",
+          "prevPrice24h": "50.85",
+          "price24hPcnt": "0.023402",
+          "highPrice24h": "53.18",
+          "lowPrice24h": "50.64",
+          "prevPrice1h": "51.92",
+          "openInterest": "1214964.1",
+          "openInterestValue": "63238881.41",
+          "singleOpenInterest": "607482.1",
+          "singleOpenInterestValue": "31619443.31",
+          "turnover24h": "25319234.4860",
+          "volume24h": "486454.2000",
+          "fundingRate": "0.0001",
+          "nextFundingTime": "1787558400000",
+          "predictedDeliveryPrice": "",
+          "basisRate": "",
+          "deliveryFeeRate": "",
+          "deliveryTime": "0",
+          "ask1Size": "51.3",
+          "bid1Price": "52.04",
+          "ask1Price": "52.05",
+          "bid1Size": "50.1",
+          "basis": "",
+          "preOpenPrice": "",
+          "preQty": "",
+          "curPreListingPhase": "",
+          "fundingIntervalHour": "8",
+          "basisRateYear": "",
+          "fundingCap": "0.0066"
+        },
+        {
+          "symbol": "SOLUSDT",
+          "lastPrice": "94.210",
+          "indexPrice": "94.212",
+          "markPrice": "94.210",
+          "prevPrice24h": "92.530",
+          "price24hPcnt": "0.018156",
+          "highPrice24h": "96.280",
+          "lowPrice24h": "91.760",
+          "prevPrice1h": "93.880",
+          "openInterest": "6102251.3",
+          "openInterestValue": "574893094.97",
+          "singleOpenInterest": "3051125.7",
+          "singleOpenInterestValue": "287446552.20",
+          "turnover24h": "650588041.4080",
+          "volume24h": "6883562.0000",
+          "fundingRate": "0.0001",
+          "nextFundingTime": "1787558400000",
+          "predictedDeliveryPrice": "",
+          "basisRate": "",
+          "deliveryFeeRate": "",
+          "deliveryTime": "0",
+          "ask1Size": "827.9",
+          "bid1Price": "94.210",
+          "ask1Price": "94.220",
+          "bid1Size": "595.8",
+          "basis": "",
+          "preOpenPrice": "",
+          "preQty": "",
+          "curPreListingPhase": "",
+          "fundingIntervalHour": "8",
+          "basisRateYear": "",
+          "fundingCap": "0.005"
+        },
+        {
+          "symbol": "SUIUSDT",
+          "lastPrice": "0.82680",
+          "indexPrice": "0.82704",
+          "markPrice": "0.82684",
+          "prevPrice24h": "0.78810",
+          "price24hPcnt": "0.049105",
+          "highPrice24h": "0.85700",
+          "lowPrice24h": "0.78130",
+          "prevPrice1h": "0.82410",
+          "openInterest": "77308640",
+          "openInterestValue": "63921875.90",
+          "singleOpenInterest": "38654320",
+          "singleOpenInterestValue": "31960937.95",
+          "turnover24h": "117452978.1100",
+          "volume24h": "142715070.0000",
+          "fundingRate": "0.0001",
+          "nextFundingTime": "1787558400000",
+          "predictedDeliveryPrice": "",
+          "basisRate": "",
+          "deliveryFeeRate": "",
+          "deliveryTime": "0",
+          "ask1Size": "20",
+          "bid1Price": "0.82680",
+          "ask1Price": "0.82690",
+          "bid1Size": "1260",
+          "basis": "",
+          "preOpenPrice": "",
+          "preQty": "",
+          "curPreListingPhase": "",
+          "fundingIntervalHour": "8",
+          "basisRateYear": "",
+          "fundingCap": "0.01"
+        },
+        {
+          "symbol": "XRPUSDT",
+          "lastPrice": "1.4773",
+          "indexPrice": "1.4769",
+          "markPrice": "1.4767",
+          "prevPrice24h": "1.4483",
+          "price24hPcnt": "0.020023",
+          "highPrice24h": "1.5507",
+          "lowPrice24h": "1.4344",
+          "prevPrice1h": "1.4741",
+          "openInterest": "233416499.3",
+          "openInterestValue": "344686144.52",
+          "singleOpenInterest": "116708249.7",
+          "singleOpenInterestValue": "172343072.33",
+          "turnover24h": "997588317.8014",
+          "volume24h": "667310984.6000",
+          "fundingRate": "0.0001",
+          "nextFundingTime": "1787558400000",
+          "predictedDeliveryPrice": "",
+          "basisRate": "",
+          "deliveryFeeRate": "",
+          "deliveryTime": "0",
+          "ask1Size": "14.6",
+          "bid1Price": "1.4773",
+          "ask1Price": "1.4774",
+          "bid1Size": "9682.4",
+          "basis": "",
+          "preOpenPrice": "",
+          "preQty": "",
+          "curPreListingPhase": "",
+          "fundingIntervalHour": "8",
+          "basisRateYear": "",
+          "fundingCap": "0.005"
+        }
+      ]
+    },
+    "instrumentsInfo": {
+      "category": "linear",
+      "list": [
+        {
+          "symbol": "AVAXUSDT",
+          "contractType": "LinearPerpetual",
+          "status": "Trading",
+          "baseCoin": "AVAX",
+          "quoteCoin": "USDT",
+          "launchTime": "1631664000000",
+          "deliveryTime": "0",
+          "deliveryFeeRate": "",
+          "priceScale": "3",
+          "leverageFilter": {
+            "minLeverage": "1",
+            "maxLeverage": "75.00",
+            "leverageStep": "0.01"
+          },
+          "priceFilter": {
+            "minPrice": "0.001",
+            "maxPrice": "19999.998",
+            "tickSize": "0.001"
+          },
+          "lotSizeFilter": {
+            "maxOrderQty": "110000.0",
+            "minOrderQty": "0.1",
+            "qtyStep": "0.1",
+            "postOnlyMaxOrderQty": "110000.0",
+            "maxMktOrderQty": "22000.0",
+            "minNotionalValue": "5"
+          },
+          "unifiedMarginTrade": true,
+          "fundingInterval": 480,
+          "settleCoin": "USDT",
+          "copyTrading": "both",
+          "upperFundingRate": "0.0066",
+          "lowerFundingRate": "-0.0066",
+          "isPreListing": false,
+          "preListingInfo": null,
+          "riskParameters": {
+            "priceLimitRatioX": "0.02",
+            "priceLimitRatioY": "0.1"
+          },
+          "displayName": "",
+          "symbolType": "",
+          "forbidUplWithdrawal": false,
+          "symbolId": 52
+        },
+        {
+          "symbol": "BNBUSDT",
+          "contractType": "LinearPerpetual",
+          "status": "Trading",
+          "baseCoin": "BNB",
+          "quoteCoin": "USDT",
+          "launchTime": "1624951080000",
+          "deliveryTime": "0",
+          "deliveryFeeRate": "",
+          "priceScale": "2",
+          "leverageFilter": {
+            "minLeverage": "1",
+            "maxLeverage": "75.00",
+            "leverageStep": "0.01"
+          },
+          "priceFilter": {
+            "minPrice": "0.10",
+            "maxPrice": "1999999.80",
+            "tickSize": "0.10"
+          },
+          "lotSizeFilter": {
+            "maxOrderQty": "940.00",
+            "minOrderQty": "0.01",
+            "qtyStep": "0.01",
+            "postOnlyMaxOrderQty": "940.00",
+            "maxMktOrderQty": "370.00",
+            "minNotionalValue": "5"
+          },
+          "unifiedMarginTrade": true,
+          "fundingInterval": 480,
+          "settleCoin": "USDT",
+          "copyTrading": "both",
+          "upperFundingRate": "0.0066",
+          "lowerFundingRate": "-0.0066",
+          "isPreListing": false,
+          "preListingInfo": null,
+          "riskParameters": {
+            "priceLimitRatioX": "0.05",
+            "priceLimitRatioY": "0.1"
+          },
+          "displayName": "",
+          "symbolType": "",
+          "forbidUplWithdrawal": false,
+          "symbolId": 36
+        },
+        {
+          "symbol": "BTCUSDT",
+          "contractType": "LinearPerpetual",
+          "status": "Trading",
+          "baseCoin": "BTC",
+          "quoteCoin": "USDT",
+          "launchTime": "1584230400000",
+          "deliveryTime": "0",
+          "deliveryFeeRate": "",
+          "priceScale": "2",
+          "leverageFilter": {
+            "minLeverage": "1",
+            "maxLeverage": "150.00",
+            "leverageStep": "0.01"
+          },
+          "priceFilter": {
+            "minPrice": "0.10",
+            "maxPrice": "1999999.80",
+            "tickSize": "0.10"
+          },
+          "lotSizeFilter": {
+            "maxOrderQty": "1500.000",
+            "minOrderQty": "0.001",
+            "qtyStep": "0.001",
+            "postOnlyMaxOrderQty": "1500.000",
+            "maxMktOrderQty": "150.000",
+            "minNotionalValue": "5"
+          },
+          "unifiedMarginTrade": true,
+          "fundingInterval": 480,
+          "settleCoin": "USDT",
+          "copyTrading": "both",
+          "upperFundingRate": "0.00333",
+          "lowerFundingRate": "-0.00333",
+          "isPreListing": false,
+          "preListingInfo": null,
+          "riskParameters": {
+            "priceLimitRatioX": "0.01",
+            "priceLimitRatioY": "0.02"
+          },
+          "displayName": "",
+          "symbolType": "",
+          "forbidUplWithdrawal": false,
+          "symbolId": 5
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "contractType": "LinearPerpetual",
+          "status": "Trading",
+          "baseCoin": "DOGE",
+          "quoteCoin": "USDT",
+          "launchTime": "1622630640000",
+          "deliveryTime": "0",
+          "deliveryFeeRate": "",
+          "priceScale": "5",
+          "leverageFilter": {
+            "minLeverage": "1",
+            "maxLeverage": "75.00",
+            "leverageStep": "0.01"
+          },
+          "priceFilter": {
+            "minPrice": "0.00001",
+            "maxPrice": "199.99998",
+            "tickSize": "0.00001"
+          },
+          "lotSizeFilter": {
+            "maxOrderQty": "43678900",
+            "minOrderQty": "1",
+            "qtyStep": "1",
+            "postOnlyMaxOrderQty": "43678900",
+            "maxMktOrderQty": "5991100",
+            "minNotionalValue": "5"
+          },
+          "unifiedMarginTrade": true,
+          "fundingInterval": 480,
+          "settleCoin": "USDT",
+          "copyTrading": "both",
+          "upperFundingRate": "0.0058",
+          "lowerFundingRate": "-0.0058",
+          "isPreListing": false,
+          "preListingInfo": null,
+          "riskParameters": {
+            "priceLimitRatioX": "0.05",
+            "priceLimitRatioY": "0.1"
+          },
+          "displayName": "",
+          "symbolType": "",
+          "forbidUplWithdrawal": false,
+          "symbolId": 33
+        },
+        {
+          "symbol": "ETHUSDT",
+          "contractType": "LinearPerpetual",
+          "status": "Trading",
+          "baseCoin": "ETH",
+          "quoteCoin": "USDT",
+          "launchTime": "1615766400000",
+          "deliveryTime": "0",
+          "deliveryFeeRate": "",
+          "priceScale": "2",
+          "leverageFilter": {
+            "minLeverage": "1",
+            "maxLeverage": "150.00",
+            "leverageStep": "0.01"
+          },
+          "priceFilter": {
+            "minPrice": "0.01",
+            "maxPrice": "199999.98",
+            "tickSize": "0.01"
+          },
+          "lotSizeFilter": {
+            "maxOrderQty": "10000.00",
+            "minOrderQty": "0.01",
+            "qtyStep": "0.01",
+            "postOnlyMaxOrderQty": "10000.00",
+            "maxMktOrderQty": "2000.00",
+            "minNotionalValue": "5"
+          },
+          "unifiedMarginTrade": true,
+          "fundingInterval": 480,
+          "settleCoin": "USDT",
+          "copyTrading": "both",
+          "upperFundingRate": "0.00333",
+          "lowerFundingRate": "-0.00333",
+          "isPreListing": false,
+          "preListingInfo": null,
+          "riskParameters": {
+            "priceLimitRatioX": "0.02",
+            "priceLimitRatioY": "0.04"
+          },
+          "displayName": "",
+          "symbolType": "",
+          "forbidUplWithdrawal": false,
+          "symbolId": 6
+        },
+        {
+          "symbol": "HYPEUSDT",
+          "contractType": "LinearPerpetual",
+          "status": "Trading",
+          "baseCoin": "HYPE",
+          "quoteCoin": "USDT",
+          "launchTime": "1733316740000",
+          "deliveryTime": "0",
+          "deliveryFeeRate": "",
+          "priceScale": "3",
+          "leverageFilter": {
+            "minLeverage": "1",
+            "maxLeverage": "75.00",
+            "leverageStep": "0.01"
+          },
+          "priceFilter": {
+            "minPrice": "0.010",
+            "maxPrice": "199999.980",
+            "tickSize": "0.010"
+          },
+          "lotSizeFilter": {
+            "maxOrderQty": "73500.00",
+            "minOrderQty": "0.01",
+            "qtyStep": "0.01",
+            "postOnlyMaxOrderQty": "73500.00",
+            "maxMktOrderQty": "14700.00",
+            "minNotionalValue": "5"
+          },
+          "unifiedMarginTrade": true,
+          "fundingInterval": 480,
+          "settleCoin": "USDT",
+          "copyTrading": "both",
+          "upperFundingRate": "0.0063",
+          "lowerFundingRate": "-0.0063",
+          "isPreListing": false,
+          "preListingInfo": null,
+          "riskParameters": {
+            "priceLimitRatioX": "0.05",
+            "priceLimitRatioY": "0.1"
+          },
+          "displayName": "",
+          "symbolType": "",
+          "forbidUplWithdrawal": false,
+          "symbolId": 654
+        },
+        {
+          "symbol": "LINKUSDT",
+          "contractType": "LinearPerpetual",
+          "status": "Trading",
+          "baseCoin": "LINK",
+          "quoteCoin": "USDT",
+          "launchTime": "1514764800000",
+          "deliveryTime": "0",
+          "deliveryFeeRate": "",
+          "priceScale": "3",
+          "leverageFilter": {
+            "minLeverage": "1",
+            "maxLeverage": "75.00",
+            "leverageStep": "0.01"
+          },
+          "priceFilter": {
+            "minPrice": "0.001",
+            "maxPrice": "19999.998",
+            "tickSize": "0.001"
+          },
+          "lotSizeFilter": {
+            "maxOrderQty": "41000.0",
+            "minOrderQty": "0.1",
+            "qtyStep": "0.1",
+            "postOnlyMaxOrderQty": "41000.0",
+            "maxMktOrderQty": "15000.0",
+            "minNotionalValue": "5"
+          },
+          "unifiedMarginTrade": true,
+          "fundingInterval": 480,
+          "settleCoin": "USDT",
+          "copyTrading": "both",
+          "upperFundingRate": "0.0066",
+          "lowerFundingRate": "-0.0066",
+          "isPreListing": false,
+          "preListingInfo": null,
+          "riskParameters": {
+            "priceLimitRatioX": "0.05",
+            "priceLimitRatioY": "0.1"
+          },
+          "displayName": "",
+          "symbolType": "",
+          "forbidUplWithdrawal": false,
+          "symbolId": 26
+        },
+        {
+          "symbol": "LTCUSDT",
+          "contractType": "LinearPerpetual",
+          "status": "Trading",
+          "baseCoin": "LTC",
+          "quoteCoin": "USDT",
+          "launchTime": "1514764800000",
+          "deliveryTime": "0",
+          "deliveryFeeRate": "",
+          "priceScale": "2",
+          "leverageFilter": {
+            "minLeverage": "1",
+            "maxLeverage": "75.00",
+            "leverageStep": "0.01"
+          },
+          "priceFilter": {
+            "minPrice": "0.01",
+            "maxPrice": "199999.98",
+            "tickSize": "0.01"
+          },
+          "lotSizeFilter": {
+            "maxOrderQty": "8800.0",
+            "minOrderQty": "0.1",
+            "qtyStep": "0.1",
+            "postOnlyMaxOrderQty": "8800.0",
+            "maxMktOrderQty": "3000.0",
+            "minNotionalValue": "5"
+          },
+          "unifiedMarginTrade": true,
+          "fundingInterval": 480,
+          "settleCoin": "USDT",
+          "copyTrading": "both",
+          "upperFundingRate": "0.0066",
+          "lowerFundingRate": "-0.0066",
+          "isPreListing": false,
+          "preListingInfo": null,
+          "riskParameters": {
+            "priceLimitRatioX": "0.05",
+            "priceLimitRatioY": "0.1"
+          },
+          "displayName": "",
+          "symbolType": "",
+          "forbidUplWithdrawal": false,
+          "symbolId": 24
+        },
+        {
+          "symbol": "SOLUSDT",
+          "contractType": "LinearPerpetual",
+          "status": "Trading",
+          "baseCoin": "SOL",
+          "quoteCoin": "USDT",
+          "launchTime": "1634256000000",
+          "deliveryTime": "0",
+          "deliveryFeeRate": "",
+          "priceScale": "3",
+          "leverageFilter": {
+            "minLeverage": "1",
+            "maxLeverage": "100.00",
+            "leverageStep": "0.01"
+          },
+          "priceFilter": {
+            "minPrice": "0.010",
+            "maxPrice": "199999.980",
+            "tickSize": "0.010"
+          },
+          "lotSizeFilter": {
+            "maxOrderQty": "96000.0",
+            "minOrderQty": "0.1",
+            "qtyStep": "0.1",
+            "postOnlyMaxOrderQty": "96000.0",
+            "maxMktOrderQty": "12000.0",
+            "minNotionalValue": "5"
+          },
+          "unifiedMarginTrade": true,
+          "fundingInterval": 480,
+          "settleCoin": "USDT",
+          "copyTrading": "both",
+          "upperFundingRate": "0.005",
+          "lowerFundingRate": "-0.005",
+          "isPreListing": false,
+          "preListingInfo": null,
+          "riskParameters": {
+            "priceLimitRatioX": "0.05",
+            "priceLimitRatioY": "0.1"
+          },
+          "displayName": "",
+          "symbolType": "",
+          "forbidUplWithdrawal": false,
+          "symbolId": 38
+        },
+        {
+          "symbol": "SUIUSDT",
+          "contractType": "LinearPerpetual",
+          "status": "Trading",
+          "baseCoin": "SUI",
+          "quoteCoin": "USDT",
+          "launchTime": "1683029724000",
+          "deliveryTime": "0",
+          "deliveryFeeRate": "",
+          "priceScale": "5",
+          "leverageFilter": {
+            "minLeverage": "1",
+            "maxLeverage": "50.00",
+            "leverageStep": "0.01"
+          },
+          "priceFilter": {
+            "minPrice": "0.00010",
+            "maxPrice": "1999.99980",
+            "tickSize": "0.00010"
+          },
+          "lotSizeFilter": {
+            "maxOrderQty": "330000",
+            "minOrderQty": "10",
+            "qtyStep": "10",
+            "postOnlyMaxOrderQty": "330000",
+            "maxMktOrderQty": "66000",
+            "minNotionalValue": "5"
+          },
+          "unifiedMarginTrade": true,
+          "fundingInterval": 480,
+          "settleCoin": "USDT",
+          "copyTrading": "both",
+          "upperFundingRate": "0.01",
+          "lowerFundingRate": "-0.01",
+          "isPreListing": false,
+          "preListingInfo": null,
+          "riskParameters": {
+            "priceLimitRatioX": "0.05",
+            "priceLimitRatioY": "0.1"
+          },
+          "displayName": "",
+          "symbolType": "",
+          "forbidUplWithdrawal": false,
+          "symbolId": 309
+        },
+        {
+          "symbol": "XRPUSDT",
+          "contractType": "LinearPerpetual",
+          "status": "Trading",
+          "baseCoin": "XRP",
+          "quoteCoin": "USDT",
+          "launchTime": "1620898440000",
+          "deliveryTime": "0",
+          "deliveryFeeRate": "",
+          "priceScale": "4",
+          "leverageFilter": {
+            "minLeverage": "1",
+            "maxLeverage": "100.00",
+            "leverageStep": "0.01"
+          },
+          "priceFilter": {
+            "minPrice": "0.0001",
+            "maxPrice": "1999.9998",
+            "tickSize": "0.0001"
+          },
+          "lotSizeFilter": {
+            "maxOrderQty": "7500000.0",
+            "minOrderQty": "0.1",
+            "qtyStep": "0.1",
+            "postOnlyMaxOrderQty": "7500000.0",
+            "maxMktOrderQty": "1500000.0",
+            "minNotionalValue": "5"
+          },
+          "unifiedMarginTrade": true,
+          "fundingInterval": 480,
+          "settleCoin": "USDT",
+          "copyTrading": "both",
+          "upperFundingRate": "0.005",
+          "lowerFundingRate": "-0.005",
+          "isPreListing": false,
+          "preListingInfo": null,
+          "riskParameters": {
+            "priceLimitRatioX": "0.05",
+            "priceLimitRatioY": "0.1"
+          },
+          "displayName": "",
+          "symbolType": "",
+          "forbidUplWithdrawal": false,
+          "symbolId": 8
+        }
+      ]
+    }
+  },
   "hlCrossCheck": {
     "endpoint": "metaAndAssetCtxs",
     "checked": 11,
@@ -362,18 +1442,18 @@
     "divergences": [
       {
         "coin": "BNB",
-        "predictedFundings": "0.0000247757",
-        "metaAndAssetCtxs": "0.0000242025"
+        "predictedFundings": "0.0000323233",
+        "metaAndAssetCtxs": "0.0000323955"
       },
       {
         "coin": "BTC",
-        "predictedFundings": "0.0000192285",
-        "metaAndAssetCtxs": "0.0000191142"
+        "predictedFundings": "0.0000134566",
+        "metaAndAssetCtxs": "0.0000134211"
       },
       {
         "coin": "LINK",
-        "predictedFundings": "0.0000236852",
-        "metaAndAssetCtxs": "0.0000231357"
+        "predictedFundings": "0.0000197229",
+        "metaAndAssetCtxs": "0.0000195922"
       }
     ],
     "floorSuspects": []
