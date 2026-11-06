@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T10:59:13.283Z",
+  "generatedAt": "2026-11-06T18:01:15.917Z",
   "source": "snapshot",
   "errors": {
     "binance": "451  from https://fapi.binance.com/fapi/v1/premiumIndex",
@@ -13,24 +13,24 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.00003063",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "0.00008701",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ],
           [
             "HlPerp",
             {
-              "fundingRate": "-0.0000115431",
-              "nextFundingTime": 1793959200000,
+              "fundingRate": "0.0000125",
+              "nextFundingTime": 1793988000000,
               "fundingIntervalHours": 1
             }
           ],
           [
             "BybitPerp",
             {
-              "fundingRate": "0.00007367",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "0.0001",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ]
@@ -42,8 +42,8 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.0",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "0.00008853",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ],
@@ -51,7 +51,7 @@
             "HlPerp",
             {
               "fundingRate": "0.0000125",
-              "nextFundingTime": 1793959200000,
+              "nextFundingTime": 1793988000000,
               "fundingIntervalHours": 1
             }
           ],
@@ -59,7 +59,7 @@
             "BybitPerp",
             {
               "fundingRate": "0.0001",
-              "nextFundingTime": 1793980800000,
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ]
@@ -71,8 +71,8 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.00005006",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "0.0001",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ],
@@ -80,15 +80,15 @@
             "HlPerp",
             {
               "fundingRate": "0.0000125",
-              "nextFundingTime": 1793959200000,
+              "nextFundingTime": 1793988000000,
               "fundingIntervalHours": 1
             }
           ],
           [
             "BybitPerp",
             {
-              "fundingRate": "0.00003557",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "0.00007918",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ]
@@ -100,24 +100,24 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.00002871",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "0.00005295",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ],
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000125",
-              "nextFundingTime": 1793959200000,
+              "fundingRate": "-0.000006144",
+              "nextFundingTime": 1793988000000,
               "fundingIntervalHours": 1
             }
           ],
           [
             "BybitPerp",
             {
-              "fundingRate": "-0.00003797",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "-0.00006525",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ]
@@ -129,24 +129,24 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.00004068",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "0.00003823",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ],
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000125",
-              "nextFundingTime": 1793959200000,
+              "fundingRate": "0.0000122734",
+              "nextFundingTime": 1793988000000,
               "fundingIntervalHours": 1
             }
           ],
           [
             "BybitPerp",
             {
-              "fundingRate": "0.00001226",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "0.00002937",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ]
@@ -163,7 +163,7 @@
             "HlPerp",
             {
               "fundingRate": "0.0000125",
-              "nextFundingTime": 1793959200000,
+              "nextFundingTime": 1793988000000,
               "fundingIntervalHours": 1
             }
           ],
@@ -179,8 +179,8 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.00001592",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "0.0001",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ],
@@ -188,7 +188,7 @@
             "HlPerp",
             {
               "fundingRate": "0.0000125",
-              "nextFundingTime": 1793959200000,
+              "nextFundingTime": 1793988000000,
               "fundingIntervalHours": 1
             }
           ],
@@ -196,7 +196,7 @@
             "BybitPerp",
             {
               "fundingRate": "0.0001",
-              "nextFundingTime": 1793980800000,
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ]
@@ -209,7 +209,7 @@
             "BinPerp",
             {
               "fundingRate": "0.0001",
-              "nextFundingTime": 1793980800000,
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ],
@@ -217,15 +217,15 @@
             "HlPerp",
             {
               "fundingRate": "0.0000125",
-              "nextFundingTime": 1793959200000,
+              "nextFundingTime": 1793988000000,
               "fundingIntervalHours": 1
             }
           ],
           [
             "BybitPerp",
             {
-              "fundingRate": "0.00000935",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "0.0001",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ]
@@ -237,24 +237,24 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.00000701",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "0.00009699",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ],
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000125",
-              "nextFundingTime": 1793959200000,
+              "fundingRate": "0.0000078477",
+              "nextFundingTime": 1793988000000,
               "fundingIntervalHours": 1
             }
           ],
           [
             "BybitPerp",
             {
-              "fundingRate": "0.00004342",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "-0.00000126",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ]
@@ -266,24 +266,24 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.00001471",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "0.00006543",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ],
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000125",
-              "nextFundingTime": 1793959200000,
+              "fundingRate": "-0.000023604",
+              "nextFundingTime": 1793988000000,
               "fundingIntervalHours": 1
             }
           ],
           [
             "BybitPerp",
             {
-              "fundingRate": "-0.000077",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "-0.00011383",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ]
@@ -295,24 +295,24 @@
           [
             "BinPerp",
             {
-              "fundingRate": "0.0001",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "0.00003315",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ],
           [
             "HlPerp",
             {
-              "fundingRate": "0.0000125",
-              "nextFundingTime": 1793959200000,
+              "fundingRate": "-0.0000065508",
+              "nextFundingTime": 1793988000000,
               "fundingIntervalHours": 1
             }
           ],
           [
             "BybitPerp",
             {
-              "fundingRate": "-0.00012888",
-              "nextFundingTime": 1793980800000,
+              "fundingRate": "-0.00006153",
+              "nextFundingTime": 1794009600000,
               "fundingIntervalHours": 8
             }
           ]
@@ -336,19 +336,19 @@
       },
       [
         {
-          "funding": "-0.0001026626",
-          "openInterest": "1838563.6439999996",
-          "prevDayPx": "88.561",
-          "dayNtlVlm": "276008454.4017158747",
-          "premium": "-0.0019101248",
-          "oraclePx": "90.57",
-          "markPx": "90.397",
-          "midPx": "90.398",
+          "funding": "-0.0001744819",
+          "openInterest": "1923894.4139999994",
+          "prevDayPx": "90.187",
+          "dayNtlVlm": "239102448.1501609683",
+          "premium": "-0.0031708945",
+          "oraclePx": "89.88",
+          "markPx": "89.617",
+          "midPx": "89.592",
           "impactPxs": [
-            "90.393",
-            "90.401"
+            "89.592",
+            "89.598"
           ],
-          "dayBaseVlm": "3055680.3430000003"
+          "dayBaseVlm": "2639970.8789999988"
         }
       ]
     ]
@@ -358,12 +358,32 @@
   "hlCrossCheck": {
     "endpoint": "metaAndAssetCtxs",
     "checked": 11,
-    "confirmed": 10,
+    "confirmed": 6,
     "divergences": [
       {
-        "coin": "AVAX",
-        "predictedFundings": "-0.0000115431",
-        "metaAndAssetCtxs": "-0.0000115715"
+        "coin": "DOGE",
+        "predictedFundings": "-0.000006144",
+        "metaAndAssetCtxs": "-0.0000011414"
+      },
+      {
+        "coin": "ETH",
+        "predictedFundings": "0.0000122734",
+        "metaAndAssetCtxs": "0.0000125"
+      },
+      {
+        "coin": "SOL",
+        "predictedFundings": "0.0000078477",
+        "metaAndAssetCtxs": "0.0000077602"
+      },
+      {
+        "coin": "SUI",
+        "predictedFundings": "-0.000023604",
+        "metaAndAssetCtxs": "-0.0000137085"
+      },
+      {
+        "coin": "XRP",
+        "predictedFundings": "-0.0000065508",
+        "metaAndAssetCtxs": "0.0000061236"
       }
     ],
     "floorSuspects": []
